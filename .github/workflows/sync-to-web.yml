@@ -1,0 +1,19 @@
+name: Sync configs to homestack-web fallback
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/**'
+      - 'index.json'
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger homestack-web sync
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.WEB_REPO_PAT }}
+          repository: ujjwalvivek/homestack-web
+          event-type: configs-updated

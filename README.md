@@ -1,7 +1,7 @@
 <!-- markdownlint-disable -->
 # HomeStack App Configurations
 
-Community-maintained Docker app configurations for [HomeStack](https://homestack.io).
+Community-maintained Docker app configurations for [HomeStack](https://homestack.sh).
 
 ## Structure
 
