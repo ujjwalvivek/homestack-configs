@@ -5,30 +5,30 @@ Every app JSON file must conform to this schema exactly.
 
 ## Top-Level Fields
 
-| Field                  | Type                  | Required | Description                                                                              |
-| ---------------------- | --------------------- | -------- | ---------------------------------------------------------------------------------------- |
-| `id`                   | `string`              | ✅        | Unique app identifier. Lowercase, hyphens allowed. Must match filename.                  |
-| `name`                 | `string`              | ✅        | Human-readable display name.                                                             |
-| `description`          | `string`              | ✅        | One-sentence description shown in the UI.                                                |
+| Field                  | Type                  | Required | Description                                                                                            |
+| ---------------------- | --------------------- | -------- | ------------------------------------------------------------------------------------------------------ |
+| `id`                   | `string`              | ✅        | Unique app identifier. Lowercase, hyphens allowed. Must match filename.                                |
+| `name`                 | `string`              | ✅        | Human-readable display name.                                                                           |
+| `description`          | `string`              | ✅        | One-sentence description shown in the UI.                                                              |
 | `category`             | `string`              | ✅        | One of: `media`, `network`, `monitoring`, `dashboard`, `productivity`, `automation`, `infrastructure`. |
-| `icon_url`             | `string`              | ✅        | URL to app icon (use dashboard-icons CDN).                                               |
-| `image`                | `string`              | ✅        | Docker image reference (prefer LinuxServer.io images).                                   |
-| `ports`                | `Port[]`              | ✅        | Array of port mappings. Empty array for host-network or VPN services.                    |
-| `volumes`              | `Volume[]`            | ✅        | Array of volume mounts.                                                                  |
-| `environment`          | `EnvironmentConfig`   | ✅        | Environment variable configuration.                                                      |
-| `networks`             | `string[]`            | ✅        | Docker networks (include `"homestack"`). Empty array for host-network services.           |
-| `depends_on`           | `string[]`            | ✅        | App IDs this app requires. Empty array if none.                                          |
-| `conflicts_with`       | `string[]`            | ✅        | App IDs that cannot coexist. Empty array if none.                                        |
-| `preflight_checks`     | `PreflightCheck[]`    | ✅        | Checks to run before install. Empty array if none.                                       |
-| `homepage_integration` | `HomepageIntegration` | ✅        | Homepage dashboard config.                                                               |
-| `tags`                 | `string[]`            | ✅        | Searchable tags.                                                                         |
-| `web_port`             | `number`              | ❌        | Explicit web UI port, overrides href parsing when present.                                |
-| `network_mode`         | `string`              | ❌        | Docker network mode (e.g. `"host"`). Omit for default bridge mode.                       |
-| `devices`              | `string[]`            | ❌        | Host device passthrough (e.g. `["/dev/dri:/dev/dri"]`).                                  |
-| `cap_add`              | `string[]`            | ❌        | Linux capabilities (e.g. `["NET_ADMIN", "NET_RAW"]`).                                    |
-| `privileged`           | `boolean`             | ❌        | Run container in privileged mode.                                                        |
-| `sidecars`             | `SidecarService[]`    | ❌        | Additional containers this app requires (databases, caches, ML workers).                 |
-| `setup_wizard`         | `SetupWizard`         | ❌        | Interactive post-deploy configuration steps.
+| `icon_url`             | `string`              | ✅        | URL to app icon (use dashboard-icons CDN).                                                             |
+| `image`                | `string`              | ✅        | Docker image reference (prefer LinuxServer.io images).                                                 |
+| `ports`                | `Port[]`              | ✅        | Array of port mappings. Empty array for host-network or VPN services.                                  |
+| `volumes`              | `Volume[]`            | ✅        | Array of volume mounts.                                                                                |
+| `environment`          | `EnvironmentConfig`   | ✅        | Environment variable configuration.                                                                    |
+| `networks`             | `string[]`            | ✅        | Docker networks (include `"homestack"`). Empty array for host-network services.                        |
+| `depends_on`           | `string[]`            | ✅        | App IDs this app requires. Empty array if none.                                                        |
+| `conflicts_with`       | `string[]`            | ✅        | App IDs that cannot coexist. Empty array if none.                                                      |
+| `preflight_checks`     | `PreflightCheck[]`    | ✅        | Checks to run before install. Empty array if none.                                                     |
+| `homepage_integration` | `HomepageIntegration` | ✅        | Homepage dashboard config.                                                                             |
+| `tags`                 | `string[]`            | ✅        | Searchable tags.                                                                                       |
+| `web_port`             | `number`              | ❌        | Explicit web UI port, overrides href parsing when present.                                             |
+| `network_mode`         | `string`              | ❌        | Docker network mode (e.g. `"host"`). Omit for default bridge mode.                                     |
+| `devices`              | `string[]`            | ❌        | Host device passthrough (e.g. `["/dev/dri:/dev/dri"]`).                                                |
+| `cap_add`              | `string[]`            | ❌        | Linux capabilities (e.g. `["NET_ADMIN", "NET_RAW"]`).                                                  |
+| `privileged`           | `boolean`             | ❌        | Run container in privileged mode.                                                                      |
+| `sidecars`             | `SidecarService[]`    | ❌        | Additional containers this app requires (databases, caches, ML workers).                               |
+| `setup_wizard`         | `SetupWizard`         | ❌        | Interactive post-deploy configuration steps.                                                           |
 
 ## Port
 
@@ -95,16 +95,16 @@ Every app JSON file must conform to this schema exactly.
 
 Multi-container apps (e.g. Immich, Nextcloud, Paperless-ngx) define additional containers as sidecars.
 
-| Field          | Type                    | Description                                                          |
-| -------------- | ----------------------- | -------------------------------------------------------------------- |
-| `id`           | `string`                | Container name / service ID.                                         |
-| `image`        | `string`                | Docker image reference.                                              |
-| `volumes`      | `Volume[]`              | Volume mounts (same schema as top-level).                            |
-| `environment`  | `Record<string, string>`| Simple key=value env vars. No dynamic secret generation.             |
-| `ports`        | `Port[]`                | Port mappings. Typically empty (internal only).                      |
-| `networks`     | `string[]`              | Docker networks. Must overlap with parent for inter-container comms. |
-| `depends_on`   | `string[]`              | Service IDs this sidecar depends on.                                 |
-| `healthcheck`  | `DockerHealthcheck?`    | Optional healthcheck configuration.                                  |
+| Field         | Type                     | Description                                                          |
+| ------------- | ------------------------ | -------------------------------------------------------------------- |
+| `id`          | `string`                 | Container name / service ID.                                         |
+| `image`       | `string`                 | Docker image reference.                                              |
+| `volumes`     | `Volume[]`               | Volume mounts (same schema as top-level).                            |
+| `environment` | `Record<string, string>` | Simple key=value env vars. No dynamic secret generation.             |
+| `ports`       | `Port[]`                 | Port mappings. Typically empty (internal only).                      |
+| `networks`    | `string[]`               | Docker networks. Must overlap with parent for inter-container comms. |
+| `depends_on`  | `string[]`               | Service IDs this sidecar depends on.                                 |
+| `healthcheck` | `DockerHealthcheck?`     | Optional healthcheck configuration.                                  |
 
 ## DockerHealthcheck (v2.0)
 
@@ -119,17 +119,17 @@ Multi-container apps (e.g. Immich, Nextcloud, Paperless-ngx) define additional c
 
 Interactive post-deploy configuration steps shown in the TUI installer.
 
-| Field          | Type                | Description                                                |
-| -------------- | ------------------- | ---------------------------------------------------------- |
-| `steps`        | `SetupWizardStep[]` | Ordered configuration steps.                               |
+| Field          | Type                | Description                                                        |
+| -------------- | ------------------- | ------------------------------------------------------------------ |
+| `steps`        | `SetupWizardStep[]` | Ordered configuration steps.                                       |
 | `web_url_path` | `string \| null`    | Path appended to service URL to open in browser. Null if external. |
-| `docs_url`     | `string?`           | Link to the app's documentation.                           |
+| `docs_url`     | `string?`           | Link to the app's documentation.                                   |
 
 ## SetupWizardStep (v2.0)
 
-| Field         | Type                                       | Description                                     |
-| ------------- | ------------------------------------------ | ----------------------------------------------- |
-| `instruction` | `string`                                   | Human-readable step instruction.                |
-| `type`        | `"info" \| "input" \| "get_key"`           | Step type. `info` = display only, `input` = user must provide a value, `get_key` = open URL to get a key. |
-| `env_key`     | `string?`                                  | For `input`/`get_key`: which `.env` key to fill. |
-| `url`         | `string?`                                  | For `get_key`: URL where user obtains the key.  |
+| Field         | Type                             | Description                                                                                               |
+| ------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `instruction` | `string`                         | Human-readable step instruction.                                                                          |
+| `type`        | `"info" \| "input" \| "get_key"` | Step type. `info` = display only, `input` = user must provide a value, `get_key` = open URL to get a key. |
+| `env_key`     | `string?`                        | For `input`/`get_key`: which `.env` key to fill.                                                          |
+| `url`         | `string?`                        | For `get_key`: URL where user obtains the key.                                                            |
