@@ -1,0 +1,109 @@
+{
+  "id": "whisparr",
+  "name": "Whisparr",
+  "description": "Automated adult content management. Sonarr fork with category-specific metadata.",
+  "category": "media",
+  "icon_url": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/whisparr.png",
+  "image": "ghcr.io/hotio/whisparr:latest",
+  "ports": [
+    {
+      "host": 6969,
+      "container": 6969,
+      "protocol": "tcp",
+      "label": "Web UI",
+      "conflicts_with": []
+    }
+  ],
+  "volumes": [
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "whisparr",
+      "container_path": "/config",
+      "label": "Whisparr config"
+    },
+    {
+      "host_path_key": "MEDIA_DIR",
+      "host_subpath": "",
+      "container_path": "/data/media",
+      "label": "Media library"
+    },
+    {
+      "host_path_key": "DOWNLOADS_DIR",
+      "host_subpath": "",
+      "container_path": "/data/downloads",
+      "label": "Downloads"
+    }
+  ],
+  "environment": {
+    "standard_linuxserver": false,
+    "extra_vars": [
+      {
+        "key": "PUID",
+        "env_key": "PUID",
+        "generate_secret": false,
+        "description": "User ID"
+      },
+      {
+        "key": "PGID",
+        "env_key": "PGID",
+        "generate_secret": false,
+        "description": "Group ID"
+      },
+      {
+        "key": "TZ",
+        "env_key": "TZ",
+        "generate_secret": false,
+        "description": "Timezone"
+      }
+    ]
+  },
+  "networks": [
+    "homestack"
+  ],
+  "depends_on": [],
+  "conflicts_with": [],
+  "preflight_checks": [],
+  "homepage_integration": {
+    "href": "http://localhost:6969",
+    "description": "Adult Media Manager",
+    "icon": "whisparr.png",
+    "widget": {
+      "type": "whisparr",
+      "url": "http://whisparr:6969",
+      "key": "WHISPARR_API_KEY"
+    }
+  },
+  "tags": [
+    "media",
+    "arr",
+    "automation"
+  ],
+  "setup_wizard": {
+    "steps": [
+      {
+        "instruction": "Set up authentication (Settings > General > Authentication)",
+        "type": "info"
+      },
+      {
+        "instruction": "Add a root folder pointing to /data/media",
+        "type": "info"
+      },
+      {
+        "instruction": "Connect a download client (Settings > Download Clients)",
+        "type": "info"
+      },
+      {
+        "instruction": "Go to Settings > General and copy the API Key",
+        "type": "info"
+      },
+      {
+        "instruction": "Paste the Whisparr API key",
+        "type": "input",
+        "env_key": "WHISPARR_API_KEY"
+      }
+    ],
+    "web_url_path": "/",
+    "docs_url": "https://wiki.servarr.com/whisparr"
+  },
+  "web_port": 6969
+}

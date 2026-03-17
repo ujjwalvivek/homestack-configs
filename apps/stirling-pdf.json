@@ -1,0 +1,74 @@
+{
+  "id": "stirling-pdf",
+  "name": "Stirling PDF",
+  "description": "All-in-one PDF toolkit: merge, split, convert, OCR, and more. No data leaves your server.",
+  "category": "productivity",
+  "icon_url": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/stirling-pdf.png",
+  "image": "ghcr.io/stirling-tools/s-pdf:latest",
+  "ports": [
+    {
+      "host": 8085,
+      "container": 8080,
+      "protocol": "tcp",
+      "label": "Web UI",
+      "conflicts_with": []
+    }
+  ],
+  "volumes": [
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "stirling-pdf/configs",
+      "container_path": "/configs",
+      "label": "Stirling PDF config"
+    },
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "stirling-pdf/logs",
+      "container_path": "/logs",
+      "label": "Stirling PDF logs"
+    }
+  ],
+  "environment": {
+    "standard_linuxserver": false,
+    "extra_vars": [
+      {
+        "key": "DOCKER_ENABLE_SECURITY",
+        "env_key": "STIRLING_ENABLE_SECURITY",
+        "generate_secret": false,
+        "description": "Enable login security (set to 'true' to require authentication)"
+      }
+    ]
+  },
+  "networks": [
+    "homestack"
+  ],
+  "depends_on": [],
+  "conflicts_with": [],
+  "preflight_checks": [],
+  "homepage_integration": {
+    "href": "http://localhost:8085",
+    "description": "PDF Toolkit",
+    "icon": "stirling-pdf.png"
+  },
+  "tags": [
+    "productivity",
+    "pdf",
+    "documents",
+    "tools"
+  ],
+  "setup_wizard": {
+    "steps": [
+      {
+        "instruction": "Stirling PDF is ready to use immediately \u2014 no account needed",
+        "type": "info"
+      },
+      {
+        "instruction": "Optional: enable authentication by setting STIRLING_ENABLE_SECURITY=true in .env",
+        "type": "info"
+      }
+    ],
+    "web_url_path": "/",
+    "docs_url": "https://docs.stirlingpdf.com/"
+  },
+  "web_port": 8085
+}

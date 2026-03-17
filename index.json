@@ -6,7 +6,19 @@
     "overseerr",
     "pihole",
     "uptime-kuma",
-    "homepage"
+    "homepage",
+    "plex",
+    "qbittorrent",
+    "prowlarr",
+    "whisparr",
+    "immich",
+    "nextcloud",
+    "paperless-ngx",
+    "stirling-pdf",
+    "home-assistant",
+    "caddy",
+    "dockge",
+    "tailscale"
   ],
-  "schema_version": "1.0.0"
+  "schema_version": "2.0.0"
 }

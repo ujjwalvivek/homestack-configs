@@ -26,8 +26,14 @@
     "standard_linuxserver": true,
     "extra_vars": []
   },
-  "networks": ["homestack"],
-  "depends_on": ["radarr", "sonarr", "jellyfin"],
+  "networks": [
+    "homestack"
+  ],
+  "depends_on": [
+    "radarr",
+    "sonarr",
+    "jellyfin"
+  ],
   "conflicts_with": [],
   "preflight_checks": [],
   "homepage_integration": {
@@ -40,5 +46,36 @@
       "key": "OVERSEERR_API_KEY"
     }
   },
-  "tags": ["media", "requests"]
+  "tags": [
+    "media",
+    "requests"
+  ],
+  "setup_wizard": {
+    "steps": [
+      {
+        "instruction": "Sign in with your Jellyfin or Plex account on first login",
+        "type": "info"
+      },
+      {
+        "instruction": "Connect your media server (Jellyfin or Plex) in Settings",
+        "type": "info"
+      },
+      {
+        "instruction": "Connect Radarr and Sonarr in Settings > Services",
+        "type": "info"
+      },
+      {
+        "instruction": "Go to Settings > General and copy the API Key",
+        "type": "info"
+      },
+      {
+        "instruction": "Paste the Overseerr API key",
+        "type": "input",
+        "env_key": "OVERSEERR_API_KEY"
+      }
+    ],
+    "web_url_path": "/",
+    "docs_url": "https://docs.overseerr.dev/"
+  },
+  "web_port": 5055
 }

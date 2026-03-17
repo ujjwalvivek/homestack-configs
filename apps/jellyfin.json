@@ -32,9 +32,13 @@
     "standard_linuxserver": true,
     "extra_vars": []
   },
-  "networks": ["homestack"],
+  "networks": [
+    "homestack"
+  ],
   "depends_on": [],
-  "conflicts_with": [],
+  "conflicts_with": [
+    "plex"
+  ],
   "preflight_checks": [],
   "homepage_integration": {
     "href": "http://localhost:8096",
@@ -46,5 +50,32 @@
       "key": "JELLYFIN_API_KEY"
     }
   },
-  "tags": ["media", "streaming"]
+  "tags": [
+    "media",
+    "streaming"
+  ],
+  "setup_wizard": {
+    "steps": [
+      {
+        "instruction": "Create your admin account on first login",
+        "type": "info"
+      },
+      {
+        "instruction": "Add media libraries: Movies \u2192 /media, TV Shows \u2192 /media",
+        "type": "info"
+      },
+      {
+        "instruction": "Go to Dashboard > API Keys and create a new key",
+        "type": "info"
+      },
+      {
+        "instruction": "Paste the Jellyfin API key",
+        "type": "input",
+        "env_key": "JELLYFIN_API_KEY"
+      }
+    ],
+    "web_url_path": "/",
+    "docs_url": "https://jellyfin.org/docs/"
+  },
+  "web_port": 8096
 }

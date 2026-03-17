@@ -1,0 +1,183 @@
+{
+  "id": "immich",
+  "name": "Immich",
+  "description": "Self-hosted Google Photos alternative with ML-powered search and face recognition.",
+  "category": "media",
+  "icon_url": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/immich.png",
+  "image": "ghcr.io/immich-app/immich-server:release",
+  "ports": [
+    {
+      "host": 2283,
+      "container": 2283,
+      "protocol": "tcp",
+      "label": "Web UI",
+      "conflicts_with": []
+    }
+  ],
+  "volumes": [
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "immich/upload",
+      "container_path": "/usr/src/app/upload",
+      "label": "Photo uploads & library"
+    }
+  ],
+  "environment": {
+    "standard_linuxserver": false,
+    "extra_vars": [
+      {
+        "key": "DB_PASSWORD",
+        "env_key": "IMMICH_DB_PASSWORD",
+        "generate_secret": true,
+        "description": "PostgreSQL database password"
+      },
+      {
+        "key": "DB_HOSTNAME",
+        "env_key": "IMMICH_DB_HOSTNAME",
+        "generate_secret": false,
+        "description": "Database hostname (set to immich-postgres)"
+      },
+      {
+        "key": "DB_USERNAME",
+        "env_key": "IMMICH_DB_USERNAME",
+        "generate_secret": false,
+        "description": "Database username"
+      },
+      {
+        "key": "DB_DATABASE_NAME",
+        "env_key": "IMMICH_DB_NAME",
+        "generate_secret": false,
+        "description": "Database name"
+      },
+      {
+        "key": "REDIS_HOSTNAME",
+        "env_key": "IMMICH_REDIS_HOSTNAME",
+        "generate_secret": false,
+        "description": "Redis hostname (set to immich-redis)"
+      }
+    ]
+  },
+  "networks": [
+    "homestack"
+  ],
+  "depends_on": [],
+  "conflicts_with": [],
+  "preflight_checks": [],
+  "homepage_integration": {
+    "href": "http://localhost:2283",
+    "description": "Photo Library",
+    "icon": "immich.png",
+    "widget": {
+      "type": "immich",
+      "url": "http://immich:2283",
+      "key": "IMMICH_API_KEY"
+    }
+  },
+  "tags": [
+    "media",
+    "photos",
+    "machine-learning",
+    "backup"
+  ],
+  "sidecars": [
+    {
+      "id": "immich-ml",
+      "image": "ghcr.io/immich-app/immich-machine-learning:release",
+      "volumes": [
+        {
+          "host_path_key": "CONFIG_DIR",
+          "host_subpath": "immich/model-cache",
+          "container_path": "/cache",
+          "label": "ML model cache"
+        }
+      ],
+      "environment": {},
+      "ports": [],
+      "networks": [
+        "homestack"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "immich-redis",
+      "image": "docker.io/redis:7-alpine",
+      "volumes": [],
+      "environment": {},
+      "ports": [],
+      "networks": [
+        "homestack"
+      ],
+      "depends_on": [],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "redis-cli",
+          "ping"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 5
+      }
+    },
+    {
+      "id": "immich-postgres",
+      "image": "docker.io/tensorchord/pgvecto-rs:pg16-v0.2.0",
+      "volumes": [
+        {
+          "host_path_key": "CONFIG_DIR",
+          "host_subpath": "immich/postgres",
+          "container_path": "/var/lib/postgresql/data",
+          "label": "PostgreSQL data"
+        }
+      ],
+      "environment": {
+        "POSTGRES_PASSWORD": "${IMMICH_DB_PASSWORD}",
+        "POSTGRES_USER": "${IMMICH_DB_USERNAME}",
+        "POSTGRES_DB": "${IMMICH_DB_NAME}",
+        "POSTGRES_INITDB_ARGS": "--data-checksums"
+      },
+      "ports": [],
+      "networks": [
+        "homestack"
+      ],
+      "depends_on": [],
+      "healthcheck": {
+        "test": [
+          "CMD-SHELL",
+          "pg_isready -d ${IMMICH_DB_NAME} -U ${IMMICH_DB_USERNAME}"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 5
+      }
+    }
+  ],
+  "setup_wizard": {
+    "steps": [
+      {
+        "instruction": "Create your admin account on first login",
+        "type": "info"
+      },
+      {
+        "instruction": "Install the Immich mobile app and connect to http://YOUR_IP:2283",
+        "type": "info"
+      },
+      {
+        "instruction": "Enable auto-backup in the mobile app settings",
+        "type": "info"
+      },
+      {
+        "instruction": "Go to Administration > API Keys and create a key",
+        "type": "info"
+      },
+      {
+        "instruction": "Paste the Immich API key",
+        "type": "input",
+        "env_key": "IMMICH_API_KEY"
+      }
+    ],
+    "web_url_path": "/",
+    "docs_url": "https://immich.app/docs/overview/introduction"
+  },
+  "web_port": 2283
+}

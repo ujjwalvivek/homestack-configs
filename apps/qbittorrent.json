@@ -1,0 +1,99 @@
+{
+  "id": "qbittorrent",
+  "name": "qBittorrent",
+  "description": "Lightweight torrent client with a clean web UI and automation-friendly API.",
+  "category": "media",
+  "icon_url": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/qbittorrent.png",
+  "image": "lscr.io/linuxserver/qbittorrent:latest",
+  "ports": [
+    {
+      "host": 8081,
+      "container": 8081,
+      "protocol": "tcp",
+      "label": "Web UI",
+      "conflicts_with": []
+    },
+    {
+      "host": 6881,
+      "container": 6881,
+      "protocol": "tcp",
+      "label": "Torrent TCP",
+      "conflicts_with": []
+    },
+    {
+      "host": 6881,
+      "container": 6881,
+      "protocol": "udp",
+      "label": "Torrent UDP",
+      "conflicts_with": []
+    }
+  ],
+  "volumes": [
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "qbittorrent",
+      "container_path": "/config",
+      "label": "qBittorrent config"
+    },
+    {
+      "host_path_key": "DOWNLOADS_DIR",
+      "host_subpath": "",
+      "container_path": "/data/downloads",
+      "label": "Downloads directory"
+    }
+  ],
+  "environment": {
+    "standard_linuxserver": true,
+    "extra_vars": [
+      {
+        "key": "WEBUI_PORT",
+        "env_key": "QBITTORRENT_WEBUI_PORT",
+        "generate_secret": false,
+        "description": "Web UI port (must match host port)"
+      }
+    ]
+  },
+  "networks": [
+    "homestack"
+  ],
+  "depends_on": [],
+  "conflicts_with": [],
+  "preflight_checks": [],
+  "homepage_integration": {
+    "href": "http://localhost:8081",
+    "description": "Torrent Client",
+    "icon": "qbittorrent.png",
+    "widget": {
+      "type": "qbittorrent",
+      "url": "http://qbittorrent:8081"
+    }
+  },
+  "tags": [
+    "media",
+    "downloads",
+    "torrent"
+  ],
+  "setup_wizard": {
+    "steps": [
+      {
+        "instruction": "The default login is admin / adminadmin \u2014 change it immediately",
+        "type": "info"
+      },
+      {
+        "instruction": "Go to Tools > Options > Web UI and set your new password",
+        "type": "info"
+      },
+      {
+        "instruction": "Set default download path to /data/downloads",
+        "type": "info"
+      },
+      {
+        "instruction": "Enable 'Bypass authentication for clients on localhost' if using Sonarr/Radarr",
+        "type": "info"
+      }
+    ],
+    "web_url_path": "/",
+    "docs_url": "https://github.com/qbittorrent/qBittorrent/wiki"
+  },
+  "web_port": 8081
+}

@@ -1,0 +1,84 @@
+{
+  "id": "dockge",
+  "name": "Dockge",
+  "description": "Lightweight Docker Compose manager with a clean UI. Start, stop, and edit stacks visually.",
+  "category": "infrastructure",
+  "icon_url": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/dockge.png",
+  "image": "louislam/dockge:1",
+  "ports": [
+    {
+      "host": 5001,
+      "container": 5001,
+      "protocol": "tcp",
+      "label": "Web UI",
+      "conflicts_with": []
+    }
+  ],
+  "volumes": [
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "dockge",
+      "container_path": "/app/data",
+      "label": "Dockge data"
+    },
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "dockge/stacks",
+      "container_path": "/opt/stacks",
+      "label": "Docker Compose stacks directory"
+    },
+    {
+      "host_path_absolute": "/var/run/docker.sock",
+      "container_path": "/var/run/docker.sock",
+      "label": "Docker socket (read-only)",
+      "readonly": true
+    }
+  ],
+  "environment": {
+    "standard_linuxserver": false,
+    "extra_vars": [
+      {
+        "key": "DOCKGE_STACKS_DIR",
+        "env_key": "DOCKGE_STACKS_DIR",
+        "generate_secret": false,
+        "description": "Path where Dockge manages compose stacks"
+      }
+    ]
+  },
+  "networks": [
+    "homestack"
+  ],
+  "depends_on": [],
+  "conflicts_with": [],
+  "preflight_checks": [],
+  "homepage_integration": {
+    "href": "http://localhost:5001",
+    "description": "Compose Manager",
+    "icon": "dockge.png"
+  },
+  "tags": [
+    "infrastructure",
+    "docker",
+    "management",
+    "compose"
+  ],
+  "setup_wizard": {
+    "steps": [
+      {
+        "instruction": "Create your admin account on first login",
+        "type": "info"
+      },
+      {
+        "instruction": "Your HomeStack compose stack will appear in the stacks list",
+        "type": "info"
+      },
+      {
+        "instruction": "Use Dockge to manage updates: pull new images and restart services",
+        "type": "info"
+      }
+    ],
+    "web_url_path": "/",
+    "docs_url": "https://dockge.kuma.pet/"
+  },
+  "web_port": 5001
+}

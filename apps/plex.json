@@ -1,0 +1,105 @@
+{
+  "id": "plex",
+  "name": "Plex",
+  "description": "Stream your media library anywhere. Hardware transcoding supported.",
+  "category": "media",
+  "icon_url": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/plex.png",
+  "image": "lscr.io/linuxserver/plex:latest",
+  "ports": [
+    {
+      "host": 32400,
+      "container": 32400,
+      "protocol": "tcp",
+      "label": "Web UI",
+      "conflicts_with": []
+    }
+  ],
+  "volumes": [
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "plex",
+      "container_path": "/config",
+      "label": "Plex config & metadata"
+    },
+    {
+      "host_path_key": "MEDIA_DIR",
+      "host_subpath": "movies",
+      "container_path": "/data/media/movies",
+      "label": "Movies library"
+    },
+    {
+      "host_path_key": "MEDIA_DIR",
+      "host_subpath": "tv",
+      "container_path": "/data/media/tv",
+      "label": "TV library"
+    },
+    {
+      "host_path_key": "MEDIA_DIR",
+      "host_subpath": "music",
+      "container_path": "/data/media/music",
+      "label": "Music library"
+    }
+  ],
+  "environment": {
+    "standard_linuxserver": true,
+    "extra_vars": [
+      {
+        "key": "PLEX_CLAIM",
+        "env_key": "PLEX_CLAIM",
+        "generate_secret": false,
+        "user_provided": true,
+        "description": "Plex claim token from https://plex.tv/claim (valid 4 minutes)"
+      }
+    ]
+  },
+  "networks": [
+    "homestack"
+  ],
+  "depends_on": [],
+  "conflicts_with": [
+    "jellyfin"
+  ],
+  "devices": [
+    "/dev/dri:/dev/dri"
+  ],
+  "preflight_checks": [],
+  "homepage_integration": {
+    "href": "http://localhost:32400/web",
+    "description": "Media Server",
+    "icon": "plex.png",
+    "widget": {
+      "type": "plex",
+      "url": "http://plex:32400",
+      "key": "PLEX_API_KEY"
+    }
+  },
+  "tags": [
+    "media",
+    "streaming",
+    "transcoding"
+  ],
+  "setup_wizard": {
+    "steps": [
+      {
+        "instruction": "Sign in with your Plex account",
+        "type": "info"
+      },
+      {
+        "instruction": "Name your server and add your media libraries:\n  Movies \u2192 /data/media/movies\n  TV \u2192 /data/media/tv\n  Music \u2192 /data/media/music",
+        "type": "info"
+      },
+      {
+        "instruction": "Go to Settings > General > Network and note the server URL",
+        "type": "info"
+      },
+      {
+        "instruction": "Paste your Plex API token (from XML trick or Plex dashboard)",
+        "type": "input",
+        "env_key": "PLEX_API_KEY"
+      }
+    ],
+    "web_url_path": "/web",
+    "docs_url": "https://support.plex.tv/articles/"
+  },
+  "web_port": 32400
+}

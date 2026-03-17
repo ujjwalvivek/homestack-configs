@@ -1,0 +1,131 @@
+{
+  "id": "nextcloud",
+  "name": "Nextcloud",
+  "description": "Self-hosted cloud storage, calendar, contacts, and collaboration suite.",
+  "category": "productivity",
+  "icon_url": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/nextcloud.png",
+  "image": "lscr.io/linuxserver/nextcloud:latest",
+  "ports": [
+    {
+      "host": 8443,
+      "container": 443,
+      "protocol": "tcp",
+      "label": "Web UI (HTTPS)",
+      "conflicts_with": []
+    }
+  ],
+  "volumes": [
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "nextcloud/config",
+      "container_path": "/config",
+      "label": "Nextcloud config"
+    },
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "nextcloud/data",
+      "container_path": "/data",
+      "label": "Nextcloud user data"
+    }
+  ],
+  "environment": {
+    "standard_linuxserver": true,
+    "extra_vars": [
+      {
+        "key": "MYSQL_ROOT_PASSWORD",
+        "env_key": "NEXTCLOUD_DB_ROOT_PASSWORD",
+        "generate_secret": true,
+        "description": "MariaDB root password"
+      },
+      {
+        "key": "MYSQL_PASSWORD",
+        "env_key": "NEXTCLOUD_DB_PASSWORD",
+        "generate_secret": true,
+        "description": "MariaDB nextcloud user password"
+      }
+    ]
+  },
+  "networks": [
+    "homestack"
+  ],
+  "depends_on": [],
+  "conflicts_with": [],
+  "preflight_checks": [],
+  "homepage_integration": {
+    "href": "https://localhost:8443",
+    "description": "Cloud Storage",
+    "icon": "nextcloud.png",
+    "widget": {
+      "type": "nextcloud",
+      "url": "https://nextcloud:443"
+    }
+  },
+  "tags": [
+    "productivity",
+    "cloud",
+    "storage",
+    "collaboration"
+  ],
+  "sidecars": [
+    {
+      "id": "nextcloud-db",
+      "image": "lscr.io/linuxserver/mariadb:latest",
+      "volumes": [
+        {
+          "host_path_key": "CONFIG_DIR",
+          "host_subpath": "nextcloud/mariadb",
+          "container_path": "/config",
+          "label": "MariaDB data"
+        }
+      ],
+      "environment": {
+        "PUID": "${PUID}",
+        "PGID": "${PGID}",
+        "TZ": "${TZ}",
+        "MYSQL_ROOT_PASSWORD": "${NEXTCLOUD_DB_ROOT_PASSWORD}",
+        "MYSQL_DATABASE": "nextcloud",
+        "MYSQL_USER": "nextcloud",
+        "MYSQL_PASSWORD": "${NEXTCLOUD_DB_PASSWORD}"
+      },
+      "ports": [],
+      "networks": [
+        "homestack"
+      ],
+      "depends_on": [],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "healthcheck.sh",
+          "--connect",
+          "--innodb_initialized"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 5
+      }
+    }
+  ],
+  "setup_wizard": {
+    "steps": [
+      {
+        "instruction": "Create your admin account on first login",
+        "type": "info"
+      },
+      {
+        "instruction": "When prompted for database, choose MySQL/MariaDB:\n  Host: nextcloud-db\n  Database: nextcloud\n  User: nextcloud\n  Password: (check NEXTCLOUD_DB_PASSWORD in .env)",
+        "type": "info"
+      },
+      {
+        "instruction": "Install recommended apps (Calendar, Contacts, Mail)",
+        "type": "info"
+      },
+      {
+        "instruction": "Go to Settings > Administration > Security for hardening options",
+        "type": "info"
+      }
+    ],
+    "web_url_path": "/",
+    "docs_url": "https://docs.nextcloud.com/server/latest/admin_manual/"
+  },
+  "web_port": 8443
+}

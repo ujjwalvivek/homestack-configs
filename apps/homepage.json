@@ -26,7 +26,9 @@
     "standard_linuxserver": false,
     "extra_vars": []
   },
-  "networks": ["homestack"],
+  "networks": [
+    "homestack"
+  ],
   "depends_on": [],
   "conflicts_with": [],
   "preflight_checks": [],
@@ -35,5 +37,26 @@
     "description": "Home Dashboard",
     "icon": "homepage.png"
   },
-  "tags": ["dashboard"]
+  "tags": [
+    "dashboard"
+  ],
+  "setup_wizard": {
+    "steps": [
+      {
+        "instruction": "Homepage auto-discovers your HomeStack services \u2014 no config needed",
+        "type": "info"
+      },
+      {
+        "instruction": "Customise widgets and layout by editing files in the homepage config directory",
+        "type": "info"
+      },
+      {
+        "instruction": "Bookmark http://YOUR_IP:3000 as your home lab landing page",
+        "type": "info"
+      }
+    ],
+    "web_url_path": "/",
+    "docs_url": "https://gethomepage.dev/latest/"
+  },
+  "web_port": 3000
 }

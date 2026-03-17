@@ -1,0 +1,82 @@
+{
+  "id": "tailscale",
+  "name": "Tailscale",
+  "description": "Zero-config VPN for secure remote access. Reach your homelab from anywhere without port forwarding.",
+  "category": "infrastructure",
+  "icon_url": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/tailscale.png",
+  "image": "tailscale/tailscale:latest",
+  "ports": [],
+  "network_mode": "host",
+  "cap_add": ["NET_ADMIN", "NET_RAW"],
+  "volumes": [
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "tailscale/state",
+      "container_path": "/var/lib/tailscale",
+      "label": "Tailscale persistent state"
+    }
+  ],
+  "environment": {
+    "standard_linuxserver": false,
+    "extra_vars": [
+      {
+        "key": "TS_AUTHKEY",
+        "env_key": "TS_AUTHKEY",
+        "generate_secret": false,
+        "user_provided": true,
+        "description": "Tailscale auth key (generate at https://login.tailscale.com/admin/settings/keys)"
+      },
+      {
+        "key": "TS_HOSTNAME",
+        "env_key": "TS_HOSTNAME",
+        "generate_secret": false,
+        "description": "Device name shown in the Tailscale admin console"
+      },
+      {
+        "key": "TS_STATE_DIR",
+        "env_key": "TS_STATE_DIR",
+        "generate_secret": false,
+        "description": "Directory for Tailscale state persistence"
+      },
+      {
+        "key": "TS_EXTRA_ARGS",
+        "env_key": "TS_EXTRA_ARGS",
+        "generate_secret": false,
+        "description": "Additional Tailscale CLI arguments (e.g., --advertise-exit-node --advertise-routes=192.168.1.0/24)"
+      },
+      {
+        "key": "TS_ACCEPT_DNS",
+        "env_key": "TS_ACCEPT_DNS",
+        "generate_secret": false,
+        "description": "Whether to accept DNS configuration from Tailscale"
+      }
+    ]
+  },
+  "networks": [],
+  "depends_on": [],
+  "conflicts_with": [],
+  "preflight_checks": [],
+  "homepage_integration": {
+    "href": "https://login.tailscale.com/admin/machines",
+    "description": "VPN Access",
+    "icon": "tailscale.png",
+    "external": true
+  },
+  "tags": ["infrastructure", "vpn", "remote-access", "tailscale", "wireguard"],
+  "setup_wizard": {
+    "steps": [
+      {
+        "instruction": "Generate an auth key at https://login.tailscale.com/admin/settings/keys",
+        "type": "get_key",
+        "env_key": "TS_AUTHKEY",
+        "url": "https://login.tailscale.com/admin/settings/keys"
+      },
+      { "instruction": "Enable 'Reusable' and set an expiry (or no expiry) for the key", "type": "info" },
+      { "instruction": "To enable subnet routing, add '--advertise-routes=YOUR_LAN_CIDR' to TS_EXTRA_ARGS in your .env file", "type": "info" },
+      { "instruction": "To use as an exit node, add '--advertise-exit-node' to TS_EXTRA_ARGS and approve it in the Tailscale admin console", "type": "info" },
+      { "instruction": "Approve the new device and any advertised routes at https://login.tailscale.com/admin/machines", "type": "info" }
+    ],
+    "web_url_path": null,
+    "docs_url": "https://tailscale.com/kb/"
+  }
+}

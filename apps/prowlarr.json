@@ -1,0 +1,78 @@
+{
+  "id": "prowlarr",
+  "name": "Prowlarr",
+  "description": "Unified indexer manager that syncs with Sonarr, Radarr, and other *arr apps.",
+  "category": "media",
+  "icon_url": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/prowlarr.png",
+  "image": "lscr.io/linuxserver/prowlarr:latest",
+  "ports": [
+    {
+      "host": 9696,
+      "container": 9696,
+      "protocol": "tcp",
+      "label": "Web UI",
+      "conflicts_with": []
+    }
+  ],
+  "volumes": [
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "prowlarr",
+      "container_path": "/config",
+      "label": "Prowlarr config"
+    }
+  ],
+  "environment": {
+    "standard_linuxserver": true,
+    "extra_vars": []
+  },
+  "networks": [
+    "homestack"
+  ],
+  "depends_on": [],
+  "conflicts_with": [],
+  "preflight_checks": [],
+  "homepage_integration": {
+    "href": "http://localhost:9696",
+    "description": "Indexer Manager",
+    "icon": "prowlarr.png",
+    "widget": {
+      "type": "prowlarr",
+      "url": "http://prowlarr:9696",
+      "key": "PROWLARR_API_KEY"
+    }
+  },
+  "tags": [
+    "media",
+    "indexer",
+    "arr"
+  ],
+  "setup_wizard": {
+    "steps": [
+      {
+        "instruction": "Set up authentication (Settings > General > Authentication)",
+        "type": "info"
+      },
+      {
+        "instruction": "Add your indexers (Indexers > Add Indexer)",
+        "type": "info"
+      },
+      {
+        "instruction": "Connect to Sonarr/Radarr (Settings > Apps > Add Application)",
+        "type": "info"
+      },
+      {
+        "instruction": "Go to Settings > General and copy the API Key",
+        "type": "info"
+      },
+      {
+        "instruction": "Paste the Prowlarr API key",
+        "type": "input",
+        "env_key": "PROWLARR_API_KEY"
+      }
+    ],
+    "web_url_path": "/",
+    "docs_url": "https://wiki.servarr.com/prowlarr"
+  },
+  "web_port": 9696
+}

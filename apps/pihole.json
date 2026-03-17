@@ -53,7 +53,9 @@
       }
     ]
   },
-  "networks": ["homestack"],
+  "networks": [
+    "homestack"
+  ],
   "depends_on": [],
   "conflicts_with": [],
   "preflight_checks": [
@@ -76,5 +78,33 @@
       "key": "PIHOLE_API_KEY"
     }
   },
-  "tags": ["network", "dns", "adblock"]
+  "tags": [
+    "network",
+    "dns",
+    "adblock"
+  ],
+  "setup_wizard": {
+    "steps": [
+      {
+        "instruction": "Log in with the password from PIHOLE_WEBPASSWORD in your .env file",
+        "type": "info"
+      },
+      {
+        "instruction": "Set your router's DNS to this server's IP to block ads network-wide",
+        "type": "info"
+      },
+      {
+        "instruction": "Go to Settings > API and copy the API token",
+        "type": "info"
+      },
+      {
+        "instruction": "Paste the Pi-hole API key",
+        "type": "input",
+        "env_key": "PIHOLE_API_KEY"
+      }
+    ],
+    "web_url_path": "/admin",
+    "docs_url": "https://docs.pi-hole.net/"
+  },
+  "web_port": 8080
 }

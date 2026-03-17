@@ -1,0 +1,151 @@
+{
+  "id": "paperless-ngx",
+  "name": "Paperless-ngx",
+  "description": "Document management system with OCR, tagging, and full-text search.",
+  "category": "productivity",
+  "icon_url": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/paperless-ngx.png",
+  "image": "ghcr.io/paperless-ngx/paperless-ngx:latest",
+  "ports": [
+    {
+      "host": 8000,
+      "container": 8000,
+      "protocol": "tcp",
+      "label": "Web UI",
+      "conflicts_with": []
+    }
+  ],
+  "volumes": [
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "paperless-ngx/data",
+      "container_path": "/usr/src/paperless/data",
+      "label": "Paperless data"
+    },
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "paperless-ngx/media",
+      "container_path": "/usr/src/paperless/media",
+      "label": "Paperless document storage"
+    },
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "paperless-ngx/consume",
+      "container_path": "/usr/src/paperless/consume",
+      "label": "Consume directory (drop files here)"
+    },
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "paperless-ngx/export",
+      "container_path": "/usr/src/paperless/export",
+      "label": "Export directory"
+    }
+  ],
+  "environment": {
+    "standard_linuxserver": false,
+    "extra_vars": [
+      {
+        "key": "PAPERLESS_SECRET_KEY",
+        "env_key": "PAPERLESS_SECRET_KEY",
+        "generate_secret": true,
+        "description": "Django secret key"
+      },
+      {
+        "key": "PAPERLESS_REDIS",
+        "env_key": "PAPERLESS_REDIS",
+        "generate_secret": false,
+        "description": "Redis connection URL"
+      },
+      {
+        "key": "PAPERLESS_URL",
+        "env_key": "PAPERLESS_URL",
+        "generate_secret": false,
+        "description": "Public URL for Paperless"
+      },
+      {
+        "key": "USERMAP_UID",
+        "env_key": "PUID",
+        "generate_secret": false,
+        "description": "User ID mapping"
+      },
+      {
+        "key": "USERMAP_GID",
+        "env_key": "PGID",
+        "generate_secret": false,
+        "description": "Group ID mapping"
+      }
+    ]
+  },
+  "networks": [
+    "homestack"
+  ],
+  "depends_on": [],
+  "conflicts_with": [],
+  "preflight_checks": [],
+  "homepage_integration": {
+    "href": "http://localhost:8000",
+    "description": "Document Manager",
+    "icon": "paperless-ngx.png",
+    "widget": {
+      "type": "paperlessngx",
+      "url": "http://paperless-ngx:8000",
+      "key": "PAPERLESS_API_KEY"
+    }
+  },
+  "tags": [
+    "productivity",
+    "documents",
+    "ocr",
+    "paperless"
+  ],
+  "sidecars": [
+    {
+      "id": "paperless-redis",
+      "image": "docker.io/redis:7-alpine",
+      "volumes": [],
+      "environment": {},
+      "ports": [],
+      "networks": [
+        "homestack"
+      ],
+      "depends_on": [],
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "redis-cli",
+          "ping"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 5
+      }
+    }
+  ],
+  "setup_wizard": {
+    "steps": [
+      {
+        "instruction": "Create a superuser: docker exec -it paperless-ngx python3 manage.py createsuperuser",
+        "type": "info"
+      },
+      {
+        "instruction": "Log in with your new superuser account",
+        "type": "info"
+      },
+      {
+        "instruction": "Drop documents into the consume folder to auto-import them",
+        "type": "info"
+      },
+      {
+        "instruction": "Generate an API token at Settings > API Token",
+        "type": "info"
+      },
+      {
+        "instruction": "Paste the Paperless-ngx API token",
+        "type": "input",
+        "env_key": "PAPERLESS_API_KEY"
+      }
+    ],
+    "web_url_path": "/",
+    "docs_url": "https://docs.paperless-ngx.com/"
+  },
+  "web_port": 8000
+}
