@@ -1,0 +1,39 @@
+{
+  "id": "homepage",
+  "name": "Homepage",
+  "description": "A highly customisable dashboard. Auto-configured to link all your apps.",
+  "category": "dashboard",
+  "icon_url": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/homepage.png",
+  "image": "ghcr.io/gethomepage/homepage:latest",
+  "ports": [
+    {
+      "host": 3000,
+      "container": 3000,
+      "protocol": "tcp",
+      "label": "Dashboard",
+      "conflicts_with": []
+    }
+  ],
+  "volumes": [
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "homepage",
+      "container_path": "/app/config",
+      "label": "Dashboard config"
+    }
+  ],
+  "environment": {
+    "standard_linuxserver": false,
+    "extra_vars": []
+  },
+  "networks": ["homestack"],
+  "depends_on": [],
+  "conflicts_with": [],
+  "preflight_checks": [],
+  "homepage_integration": {
+    "href": "http://localhost:3000",
+    "description": "Home Dashboard",
+    "icon": "homepage.png"
+  },
+  "tags": ["dashboard"]
+}

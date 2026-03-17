@@ -1,0 +1,50 @@
+{
+  "id": "jellyfin",
+  "name": "Jellyfin",
+  "description": "Free open-source media server. Stream movies and TV to any device.",
+  "category": "media",
+  "icon_url": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/jellyfin.png",
+  "image": "lscr.io/linuxserver/jellyfin:latest",
+  "ports": [
+    {
+      "host": 8096,
+      "container": 8096,
+      "protocol": "tcp",
+      "label": "Web UI",
+      "conflicts_with": []
+    }
+  ],
+  "volumes": [
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "jellyfin",
+      "container_path": "/config",
+      "label": "Config & database"
+    },
+    {
+      "host_path_key": "MEDIA_DIR",
+      "host_subpath": "",
+      "container_path": "/media",
+      "label": "Media library"
+    }
+  ],
+  "environment": {
+    "standard_linuxserver": true,
+    "extra_vars": []
+  },
+  "networks": ["homestack"],
+  "depends_on": [],
+  "conflicts_with": [],
+  "preflight_checks": [],
+  "homepage_integration": {
+    "href": "http://localhost:8096",
+    "description": "Media Server",
+    "icon": "jellyfin.png",
+    "widget": {
+      "type": "jellyfin",
+      "url": "http://jellyfin:8096",
+      "key": "JELLYFIN_API_KEY"
+    }
+  },
+  "tags": ["media", "streaming"]
+}

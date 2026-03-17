@@ -1,0 +1,80 @@
+{
+  "id": "pihole",
+  "name": "Pi-hole",
+  "description": "DNS-level ad and tracker blocking for your entire network.",
+  "category": "network",
+  "icon_url": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/pi-hole.png",
+  "image": "pihole/pihole:latest",
+  "ports": [
+    {
+      "host": 53,
+      "container": 53,
+      "protocol": "udp",
+      "label": "DNS",
+      "conflicts_with": []
+    },
+    {
+      "host": 53,
+      "container": 53,
+      "protocol": "tcp",
+      "label": "DNS (TCP)",
+      "conflicts_with": []
+    },
+    {
+      "host": 8080,
+      "container": 80,
+      "protocol": "tcp",
+      "label": "Admin UI",
+      "conflicts_with": []
+    }
+  ],
+  "volumes": [
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "pihole/etc-pihole",
+      "container_path": "/etc/pihole",
+      "label": "Pi-hole config"
+    },
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "pihole/etc-dnsmasq.d",
+      "container_path": "/etc/dnsmasq.d",
+      "label": "DNS config"
+    }
+  ],
+  "environment": {
+    "standard_linuxserver": false,
+    "extra_vars": [
+      {
+        "key": "WEBPASSWORD",
+        "env_key": "PIHOLE_WEBPASSWORD",
+        "generate_secret": true,
+        "description": "Pi-hole admin panel password"
+      }
+    ]
+  },
+  "networks": ["homestack"],
+  "depends_on": [],
+  "conflicts_with": [],
+  "preflight_checks": [
+    {
+      "id": "systemd_resolved",
+      "description": "systemd-resolved must release port 53"
+    },
+    {
+      "id": "port_53_free",
+      "description": "Port 53 UDP must be free on the host"
+    }
+  ],
+  "homepage_integration": {
+    "href": "http://localhost:8080/admin",
+    "description": "Network Ad Blocker",
+    "icon": "pi-hole.png",
+    "widget": {
+      "type": "pihole",
+      "url": "http://pihole:80",
+      "key": "PIHOLE_API_KEY"
+    }
+  },
+  "tags": ["network", "dns", "adblock"]
+}

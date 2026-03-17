@@ -1,0 +1,44 @@
+{
+  "id": "uptime-kuma",
+  "name": "Uptime Kuma",
+  "description": "Beautiful self-hosted monitoring for all your services.",
+  "category": "monitoring",
+  "icon_url": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/uptime-kuma.png",
+  "image": "louislam/uptime-kuma:latest",
+  "ports": [
+    {
+      "host": 3001,
+      "container": 3001,
+      "protocol": "tcp",
+      "label": "Web UI",
+      "conflicts_with": []
+    }
+  ],
+  "volumes": [
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "uptime-kuma",
+      "container_path": "/app/data",
+      "label": "Monitor database"
+    }
+  ],
+  "environment": {
+    "standard_linuxserver": false,
+    "extra_vars": []
+  },
+  "networks": ["homestack"],
+  "depends_on": [],
+  "conflicts_with": [],
+  "preflight_checks": [],
+  "homepage_integration": {
+    "href": "http://localhost:3001",
+    "description": "Service Monitor",
+    "icon": "uptime-kuma.png",
+    "widget": {
+      "type": "uptimekuma",
+      "url": "http://uptime-kuma:3001",
+      "key": "UPTIME_KUMA_API_KEY"
+    }
+  },
+  "tags": ["monitoring", "uptime"]
+}

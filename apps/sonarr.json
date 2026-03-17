@@ -1,0 +1,56 @@
+{
+  "id": "sonarr",
+  "name": "Sonarr",
+  "description": "Automatic TV show downloading and organisation.",
+  "category": "media",
+  "icon_url": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/sonarr.png",
+  "image": "lscr.io/linuxserver/sonarr:latest",
+  "ports": [
+    {
+      "host": 8989,
+      "container": 8989,
+      "protocol": "tcp",
+      "label": "Web UI",
+      "conflicts_with": []
+    }
+  ],
+  "volumes": [
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "sonarr",
+      "container_path": "/config",
+      "label": "Config"
+    },
+    {
+      "host_path_key": "DOWNLOADS_DIR",
+      "host_subpath": "",
+      "container_path": "/downloads",
+      "label": "Download client output"
+    },
+    {
+      "host_path_key": "MEDIA_DIR",
+      "host_subpath": "",
+      "container_path": "/tv",
+      "label": "TV library"
+    }
+  ],
+  "environment": {
+    "standard_linuxserver": true,
+    "extra_vars": []
+  },
+  "networks": ["homestack"],
+  "depends_on": [],
+  "conflicts_with": [],
+  "preflight_checks": [],
+  "homepage_integration": {
+    "href": "http://localhost:8989",
+    "description": "TV Manager",
+    "icon": "sonarr.png",
+    "widget": {
+      "type": "sonarr",
+      "url": "http://sonarr:8989",
+      "key": "SONARR_API_KEY"
+    }
+  },
+  "tags": ["media", "automation", "tv"]
+}

@@ -1,0 +1,44 @@
+{
+  "id": "overseerr",
+  "name": "Overseerr",
+  "description": "Media request management. Let friends request movies and TV shows.",
+  "category": "media",
+  "icon_url": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/overseerr.png",
+  "image": "lscr.io/linuxserver/overseerr:latest",
+  "ports": [
+    {
+      "host": 5055,
+      "container": 5055,
+      "protocol": "tcp",
+      "label": "Web UI",
+      "conflicts_with": []
+    }
+  ],
+  "volumes": [
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "overseerr",
+      "container_path": "/config",
+      "label": "Config"
+    }
+  ],
+  "environment": {
+    "standard_linuxserver": true,
+    "extra_vars": []
+  },
+  "networks": ["homestack"],
+  "depends_on": ["radarr", "sonarr", "jellyfin"],
+  "conflicts_with": [],
+  "preflight_checks": [],
+  "homepage_integration": {
+    "href": "http://localhost:5055",
+    "description": "Request Manager",
+    "icon": "overseerr.png",
+    "widget": {
+      "type": "overseerr",
+      "url": "http://overseerr:5055",
+      "key": "OVERSEERR_API_KEY"
+    }
+  },
+  "tags": ["media", "requests"]
+}

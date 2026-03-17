@@ -1,0 +1,56 @@
+{
+  "id": "radarr",
+  "name": "Radarr",
+  "description": "Automatic movie downloading and organisation.",
+  "category": "media",
+  "icon_url": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/radarr.png",
+  "image": "lscr.io/linuxserver/radarr:latest",
+  "ports": [
+    {
+      "host": 7878,
+      "container": 7878,
+      "protocol": "tcp",
+      "label": "Web UI",
+      "conflicts_with": []
+    }
+  ],
+  "volumes": [
+    {
+      "host_path_key": "CONFIG_DIR",
+      "host_subpath": "radarr",
+      "container_path": "/config",
+      "label": "Config"
+    },
+    {
+      "host_path_key": "DOWNLOADS_DIR",
+      "host_subpath": "",
+      "container_path": "/downloads",
+      "label": "Download client output"
+    },
+    {
+      "host_path_key": "MEDIA_DIR",
+      "host_subpath": "",
+      "container_path": "/movies",
+      "label": "Movie library"
+    }
+  ],
+  "environment": {
+    "standard_linuxserver": true,
+    "extra_vars": []
+  },
+  "networks": ["homestack"],
+  "depends_on": [],
+  "conflicts_with": [],
+  "preflight_checks": [],
+  "homepage_integration": {
+    "href": "http://localhost:7878",
+    "description": "Movie Manager",
+    "icon": "radarr.png",
+    "widget": {
+      "type": "radarr",
+      "url": "http://radarr:7878",
+      "key": "RADARR_API_KEY"
+    }
+  },
+  "tags": ["media", "automation", "movies"]
+}
