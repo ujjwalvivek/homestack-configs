@@ -74,7 +74,7 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Caddy is your reverse proxy — it auto-configures from the generated Caddyfile. No manual setup needed unless you're using a custom domain",
+        "instruction": "Caddy is your reverse proxy - it auto-configures from the generated Caddyfile. No manual setup needed unless you're using a custom domain",
         "type": "info"
       },
       {
