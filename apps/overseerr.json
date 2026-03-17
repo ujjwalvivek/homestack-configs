@@ -32,7 +32,8 @@
   "depends_on": [
     "radarr",
     "sonarr",
-    "jellyfin"
+    "jellyfin",
+    "plex"
   ],
   "conflicts_with": [],
   "preflight_checks": [],
