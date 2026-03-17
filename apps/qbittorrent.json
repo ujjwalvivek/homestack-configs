@@ -76,19 +76,19 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "The default login is admin / adminadmin \u2014 change it immediately",
+        "instruction": "Default login: username = admin, password = adminadmin. Enter these and click 'Login'. CHANGE THIS PASSWORD IMMEDIATELY in the next step",
         "type": "info"
       },
       {
-        "instruction": "Go to Tools > Options > Web UI and set your new password",
+        "instruction": "Go to Tools (top menu) \u2192 Options \u2192 Web UI tab. Under 'Authentication', change the Password field to a strong password. Click Save at the bottom",
         "type": "info"
       },
       {
-        "instruction": "Set default download path to /data/downloads",
+        "instruction": "Still in Options \u2192 Downloads tab \u2192 set 'Default Save Path' to: /data/downloads. Click Save. This is where Radarr/Sonarr will look for completed downloads",
         "type": "info"
       },
       {
-        "instruction": "Enable 'Bypass authentication for clients on localhost' if using Sonarr/Radarr",
+        "instruction": "Optional but recommended: Options \u2192 Web UI tab \u2192 scroll to 'Bypass authentication for clients on localhost'. Enable this so Radarr/Sonarr can connect without credentials",
         "type": "info"
       }
     ],

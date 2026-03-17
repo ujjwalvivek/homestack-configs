@@ -74,19 +74,19 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Caddy auto-configures itself from the generated Caddyfile",
+        "instruction": "Caddy is your reverse proxy — it auto-configures from the generated Caddyfile. No manual setup needed unless you're using a custom domain",
         "type": "info"
       },
       {
-        "instruction": "If you provided a domain, point your DNS A record to this server's public IP",
+        "instruction": "If you entered a domain during setup: go to your DNS provider (Cloudflare, Namecheap, etc.) → DNS Records → Add an A record: Name = * (wildcard), Value = your server's PUBLIC IP address, TTL = Auto. This makes *.yourdomain.com point to your server",
         "type": "info"
       },
       {
-        "instruction": "Caddy will automatically provision Let's Encrypt TLS certificates",
+        "instruction": "Caddy will automatically request and renew free Let's Encrypt TLS certificates. First request takes ~30 seconds. After that, access any service at https://appname.yourdomain.com (e.g. https://radarr.yourdomain.com)",
         "type": "info"
       },
       {
-        "instruction": "Access services via https://app.yourdomain.com instead of IP:port",
+        "instruction": "Without a domain: services are available at http://YOUR_SERVER_IP:PORT directly. No HTTPS needed for local access",
         "type": "info"
       }
     ],

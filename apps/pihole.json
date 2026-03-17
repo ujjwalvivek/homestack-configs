@@ -86,21 +86,23 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Log in with the password from PIHOLE_WEBPASSWORD in your .env file",
+        "instruction": "Open Pi-hole web UI. Login password is the value of PIHOLE_WEBPASSWORD from your .env file. Enter it in the 'Password' field and click 'Log in'",
         "type": "info"
       },
       {
-        "instruction": "Set your router's DNS to this server's IP to block ads network-wide",
+        "instruction": "To block ads network-wide: log into your router's admin panel (usually 192.168.1.1). Find DNS settings (often under DHCP or Internet/WAN). Set the Primary DNS server to this server's IP address. Save and reboot your router. All devices on your network will now use Pi-hole",
         "type": "info"
       },
       {
-        "instruction": "Go to Settings > API and copy the API token",
+        "instruction": "In Pi-hole: go to Settings (gear icon, left sidebar) \u2192 API tab \u2192 click 'Show API token' \u2192 click the button to reveal and copy the token string",
         "type": "info"
       },
       {
-        "instruction": "Paste the Pi-hole API key",
+        "instruction": "Paste the Pi-hole API token",
         "type": "input",
-        "env_key": "PIHOLE_API_KEY"
+        "env_key": "PIHOLE_API_KEY",
+        "api_validate_url": "/admin/api.php?summary",
+        "api_header_format": "X-Pi-Hole-Token: {key}"
       }
     ],
     "web_url_path": "/admin",

@@ -81,25 +81,27 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Set up authentication (Settings > General > Authentication)",
+        "instruction": "First login will ask you to set up authentication. Select 'Forms (Login Page)'. Enter a username and password. Click Save",
         "type": "info"
       },
       {
-        "instruction": "Add a root folder pointing to /data/media",
+        "instruction": "Go to Settings \u2192 Media Management \u2192 Root Folders \u2192 Add Root Folder \u2192 type /data/media \u2192 click OK",
         "type": "info"
       },
       {
-        "instruction": "Connect a download client (Settings > Download Clients)",
+        "instruction": "Go to Settings \u2192 Download Clients \u2192 click + \u2192 select 'qBittorrent'. Set: Host = qbittorrent, Port = 8081. Click Test \u2192 Save",
         "type": "info"
       },
       {
-        "instruction": "Go to Settings > General and copy the API Key",
+        "instruction": "Go to Settings \u2192 General \u2192 copy the API Key",
         "type": "info"
       },
       {
         "instruction": "Paste the Whisparr API key",
         "type": "input",
-        "env_key": "WHISPARR_API_KEY"
+        "env_key": "WHISPARR_API_KEY",
+        "api_validate_url": "/api/v1/system/status",
+        "api_header_format": "X-Api-Key: {key}"
       }
     ],
     "web_url_path": "/",

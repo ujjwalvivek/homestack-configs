@@ -108,24 +108,20 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Create your admin account on first login",
+        "instruction": "Create your admin account: choose a username and strong password. IMPORTANT: When asked to configure the database, select 'MySQL/MariaDB' and enter: Database user = nextcloud, Database password = (value of NEXTCLOUD_DB_PASSWORD in your .env file), Database name = nextcloud, Database host = nextcloud-db. Click 'Finish setup'",
         "type": "info"
       },
       {
-        "instruction": "When prompted for database, choose MySQL/MariaDB:\n  Host: nextcloud-db\n  Database: nextcloud\n  User: nextcloud\n  Password: (check NEXTCLOUD_DB_PASSWORD in .env)",
+        "instruction": "When prompted to install recommended apps, click 'Install recommended apps' (Calendar, Contacts, Mail, Talk). This may take 1-2 minutes",
         "type": "info"
       },
       {
-        "instruction": "Install recommended apps (Calendar, Contacts, Mail)",
-        "type": "info"
-      },
-      {
-        "instruction": "Go to Settings > Administration > Security for hardening options",
+        "instruction": "For security: go to Settings (top right avatar) \u2192 Administration \u2192 Security. Review and enable settings as needed. Access your files at Files (top nav) and share them with the Share icon",
         "type": "info"
       }
     ],
     "web_url_path": "/",
-    "docs_url": "https://docs.nextcloud.com/server/latest/admin_manual/"
+    "docs_url": "https://docs.nextcloud.com/"
   },
   "web_port": 8443
 }

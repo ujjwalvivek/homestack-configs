@@ -43,15 +43,15 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Homepage auto-discovers your HomeStack services \u2014 no config needed",
+        "instruction": "Homepage auto-discovers your HomeStack services \u2014 no manual configuration needed. All your apps should appear with their status, widgets, and links",
         "type": "info"
       },
       {
-        "instruction": "Customise widgets and layout by editing files in the homepage config directory",
+        "instruction": "To customize: edit the files in your CONFIG_DIR/homepage/ folder. services.yaml controls the layout, widgets.yaml adds dashboard widgets, settings.yaml controls theme and appearance. Changes take effect on page refresh",
         "type": "info"
       },
       {
-        "instruction": "Bookmark http://YOUR_IP:3000 as your home lab landing page",
+        "instruction": "Bookmark this page \u2014 it's your homelab dashboard. Access it at http://YOUR_SERVER_IP:3000 from any device on your network",
         "type": "info"
       }
     ],

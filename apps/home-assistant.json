@@ -49,15 +49,37 @@
       "key": "HASS_API_KEY"
     }
   },
-  "tags": ["automation", "smart-home", "iot", "zigbee"],
+  "tags": [
+    "automation",
+    "smart-home",
+    "iot",
+    "zigbee"
+  ],
   "setup_wizard": {
     "steps": [
-      { "instruction": "Create your Home Assistant account (this becomes the owner account)", "type": "info" },
-      { "instruction": "Set your home location and units", "type": "info" },
-      { "instruction": "Home Assistant will auto-discover devices on your network", "type": "info" },
-      { "instruction": "For Zigbee/Z-Wave USB devices: uncomment the 'devices:' lines in docker-compose.yml and add your USB path (e.g. /dev/ttyUSB0:/dev/ttyUSB0), then run: docker compose up -d", "type": "info" },
-      { "instruction": "Go to Profile (bottom left) > Long-Lived Access Tokens > Create Token", "type": "info" },
-      { "instruction": "Paste your Home Assistant API token", "type": "input", "env_key": "HASS_API_KEY" }
+      {
+        "instruction": "Create your account: enter a name, username, and password. This is the owner/admin account. Click 'Create Account'. Set your home name, location (for weather/sun automations), and preferred units. Click Next through the wizard",
+        "type": "info"
+      },
+      {
+        "instruction": "Home Assistant will auto-discover smart devices on your network (Hue, Sonos, Chromecast, etc.). Click 'Configure' next to any discovered device to add it. You can also add devices later from Settings \u2192 Devices & Services \u2192 Add Integration",
+        "type": "info"
+      },
+      {
+        "instruction": "For Zigbee/Z-Wave USB devices: edit docker-compose.yml \u2192 uncomment the 'devices:' section under home-assistant \u2192 add your USB path (e.g. /dev/ttyUSB0:/dev/ttyUSB0). Restart with: docker compose up -d",
+        "type": "info"
+      },
+      {
+        "instruction": "Create API token: click your avatar (bottom left sidebar) \u2192 scroll to 'Long-Lived Access Tokens' \u2192 click 'Create Token' \u2192 name it 'homestack' \u2192 copy the token shown",
+        "type": "info"
+      },
+      {
+        "instruction": "Paste your Home Assistant API token",
+        "type": "input",
+        "env_key": "HASS_API_KEY",
+        "api_validate_url": "/api/",
+        "api_header_format": "Authorization: Bearer {key}"
+      }
     ],
     "web_url_path": "/",
     "docs_url": "https://www.home-assistant.io/docs/"

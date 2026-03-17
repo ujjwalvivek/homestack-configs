@@ -49,19 +49,15 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Create your admin account on first login",
+        "instruction": "Create your admin account: choose a username and strong password. Click 'Register'. This is the only account \u2014 there's no multi-user support",
         "type": "info"
       },
       {
-        "instruction": "Add monitors by clicking '+ New Monitor'",
+        "instruction": "Add monitors for each HomeStack service: click '+ New Monitor' \u2192 Type = HTTP(s). Use Docker hostnames for reliability. Examples: http://radarr:7878, http://sonarr:8989, http://plex:32400, http://immich:2283, http://pihole:80. Click Save for each",
         "type": "info"
       },
       {
-        "instruction": "Monitor HomeStack services using container names (e.g. http://jellyfin:8096)",
-        "type": "info"
-      },
-      {
-        "instruction": "To enable the Homepage widget, go to Settings > API Keys and create one",
+        "instruction": "Create API key: click Settings (gear icon, top right) \u2192 API Keys \u2192 click 'Add API Key' \u2192 name it 'homestack' \u2192 copy the key. Note: if you don't see API Keys, upgrade to Uptime Kuma v1.21+",
         "type": "info"
       },
       {

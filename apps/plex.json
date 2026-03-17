@@ -81,25 +81,25 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Sign in with your Plex account",
+        "instruction": "Sign in with your Plex account (or create one at plex.tv). You MUST claim the server within 5 minutes of first start. If it says 'Not Available', check that PLEX_CLAIM is set in .env (get a claim token from https://www.plex.tv/claim/)",
         "type": "info"
       },
       {
-        "instruction": "Name your server and add your media libraries:\n  Movies \u2192 /data/media/movies\n  TV \u2192 /data/media/tv\n  Music \u2192 /data/media/music",
+        "instruction": "Name your server (e.g. 'HomeStack'). Click Next. Add libraries: click 'Add Library' \u2192 Type: Movies \u2192 click 'Add Folder' \u2192 browse to /data/media/movies \u2192 click Add. Repeat for TV Shows \u2192 /data/media/tv. Click 'Done'",
         "type": "info"
       },
       {
-        "instruction": "Go to Settings > General > Network and note the server URL",
+        "instruction": "To get your Plex token: open any media item \u2192 click \u22ef (three dots) \u2192 Get Info \u2192 View XML. In the URL, copy the value after X-Plex-Token=. Or visit https://www.plex.tv/claim/ while signed in",
         "type": "info"
       },
       {
-        "instruction": "Paste your Plex API token (from XML trick or Plex dashboard)",
+        "instruction": "Paste your Plex API token",
         "type": "input",
         "env_key": "PLEX_API_KEY"
       }
     ],
     "web_url_path": "/web",
-    "docs_url": "https://support.plex.tv/articles/"
+    "docs_url": "https://support.plex.tv/"
   },
   "web_port": 32400
 }

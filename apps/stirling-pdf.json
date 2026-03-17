@@ -59,16 +59,16 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Stirling PDF is ready to use immediately \u2014 no account needed",
+        "instruction": "Stirling PDF works immediately \u2014 no account setup needed. Open the web UI to merge, split, convert, compress, and edit PDFs directly in your browser",
         "type": "info"
       },
       {
-        "instruction": "Optional: enable authentication by setting STIRLING_ENABLE_SECURITY=true in .env",
+        "instruction": "Optional: to add login/authentication, set STIRLING_ENABLE_SECURITY=true in your .env file, then restart the container with: docker compose restart stirling-pdf",
         "type": "info"
       }
     ],
     "web_url_path": "/",
-    "docs_url": "https://docs.stirlingpdf.com/"
+    "docs_url": "https://github.com/Stirling-Tools/Stirling-PDF"
   },
   "web_port": 8085
 }

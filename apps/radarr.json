@@ -62,25 +62,27 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Set up authentication in Settings > General > Authentication",
+        "instruction": "First login will ask you to set up authentication. Select 'Forms (Login Page)' for Authentication Method. Enter a username and password. Click Save",
         "type": "info"
       },
       {
-        "instruction": "Add a root folder pointing to /movies",
+        "instruction": "Go to Settings (left sidebar) \u2192 Media Management \u2192 scroll down to 'Root Folders' \u2192 click 'Add Root Folder' \u2192 type /movies \u2192 click OK. This tells Radarr where to store your movie files",
         "type": "info"
       },
       {
-        "instruction": "Connect a download client in Settings > Download Clients",
+        "instruction": "Go to Settings \u2192 Download Clients \u2192 click the + button \u2192 select 'qBittorrent'. Set: Host = qbittorrent, Port = 8081. If you enabled localhost bypass in qBittorrent, leave username/password empty. Click 'Test' (should show green checkmark) \u2192 click Save",
         "type": "info"
       },
       {
-        "instruction": "Go to Settings > General and copy the API Key",
+        "instruction": "Go to Settings \u2192 General \u2192 under 'Security', find the API Key field. Click the copy icon next to it to copy the key",
         "type": "info"
       },
       {
         "instruction": "Paste the Radarr API key",
         "type": "input",
-        "env_key": "RADARR_API_KEY"
+        "env_key": "RADARR_API_KEY",
+        "api_validate_url": "/api/v1/system/status",
+        "api_header_format": "X-Api-Key: {key}"
       }
     ],
     "web_url_path": "/",

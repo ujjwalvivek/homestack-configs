@@ -65,20 +65,20 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Create your admin account on first login",
+        "instruction": "Create your admin account on first login: choose a username and strong password. Click 'Create'",
         "type": "info"
       },
       {
-        "instruction": "Your HomeStack compose stack will appear in the stacks list",
+        "instruction": "Your HomeStack compose stack will appear in the stacks list. Use Dockge to monitor containers, view logs, restart services, and pull updated images \u2014 all from a web UI",
         "type": "info"
       },
       {
-        "instruction": "Use Dockge to manage updates: pull new images and restart services",
+        "instruction": "To update a service: click the stack \u2192 click 'Pull' to download the latest image \u2192 click 'Restart' to apply. Dockge is your ongoing stack management tool",
         "type": "info"
       }
     ],
     "web_url_path": "/",
-    "docs_url": "https://dockge.kuma.pet/"
+    "docs_url": "https://github.com/louislam/dockge"
   },
   "web_port": 5001
 }

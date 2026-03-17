@@ -54,25 +54,31 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Sign in with your Jellyfin or Plex account on first login",
+        "instruction": "Click 'Sign in with Plex' (or Jellyfin if you chose that). Sign in with your media server account. This becomes the admin account",
         "type": "info"
       },
       {
-        "instruction": "Connect your media server (Jellyfin or Plex) in Settings",
+        "instruction": "Configure Plex: Settings (left sidebar) \u2192 Plex \u2192 set Server URL to http://plex:32400 \u2192 click 'Test' (green checkmark) \u2192 Save. For Jellyfin: set URL to http://jellyfin:8096",
         "type": "info"
       },
       {
-        "instruction": "Connect Radarr and Sonarr in Settings > Services",
+        "instruction": "Connect Radarr: Settings \u2192 Radarr \u2192 click 'Add Radarr Server'. Set: Server Name = Radarr, Hostname = radarr, Port = 7878, API Key = paste your RADARR API key from earlier. Click 'Test' \u2192 select a Quality Profile and Root Folder \u2192 Save",
         "type": "info"
       },
       {
-        "instruction": "Go to Settings > General and copy the API Key",
+        "instruction": "Connect Sonarr: Settings \u2192 Sonarr \u2192 click 'Add Sonarr Server'. Set: Server Name = Sonarr, Hostname = sonarr, Port = 8989, API Key = paste your SONARR API key. Click 'Test' \u2192 select Quality Profile and Root Folder \u2192 Save",
+        "type": "info"
+      },
+      {
+        "instruction": "Settings \u2192 General \u2192 scroll down to find the API Key. Copy it",
         "type": "info"
       },
       {
         "instruction": "Paste the Overseerr API key",
         "type": "input",
-        "env_key": "OVERSEERR_API_KEY"
+        "env_key": "OVERSEERR_API_KEY",
+        "api_validate_url": "/api/v1/status",
+        "api_header_format": "X-Api-Key: {key}"
       }
     ],
     "web_url_path": "/",

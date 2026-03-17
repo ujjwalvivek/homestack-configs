@@ -123,25 +123,23 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Create a superuser: docker exec -it paperless-ngx python3 manage.py createsuperuser",
+        "instruction": "Create a superuser first! Open a terminal and run: docker exec -it paperless-ngx python3 manage.py createsuperuser. Enter a username, email (optional), and password when prompted",
         "type": "info"
       },
       {
-        "instruction": "Log in with your new superuser account",
+        "instruction": "Log in with the superuser account you just created. To import documents: drop files into the consume folder at your CONFIG_DIR/paperless-ngx/consume/ \u2014 Paperless will auto-detect, OCR, and categorize them",
         "type": "info"
       },
       {
-        "instruction": "Drop documents into the consume folder to auto-import them",
-        "type": "info"
-      },
-      {
-        "instruction": "Generate an API token at Settings > API Token",
+        "instruction": "Create API token: click your username (top right) \u2192 My Profile \u2192 scroll to 'API Token' \u2192 click 'Regenerate' \u2192 copy the token shown",
         "type": "info"
       },
       {
         "instruction": "Paste the Paperless-ngx API token",
         "type": "input",
-        "env_key": "PAPERLESS_API_KEY"
+        "env_key": "PAPERLESS_API_KEY",
+        "api_validate_url": "/api/",
+        "api_header_format": "Authorization: Token {key}"
       }
     ],
     "web_url_path": "/",

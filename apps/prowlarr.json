@@ -50,25 +50,31 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Set up authentication (Settings > General > Authentication)",
+        "instruction": "First login will ask you to set up authentication. Select 'Forms (Login Page)'. Enter a username and password. Click Save",
         "type": "info"
       },
       {
-        "instruction": "Add your indexers (Indexers > Add Indexer)",
+        "instruction": "Add indexers: click Indexers (left sidebar) \u2192 Add Indexer \u2192 search for your preferred indexers (e.g. 1337x, RARBG, Nyaa). Click the indexer \u2192 click 'Test' \u2192 click Save. Add at least 2-3 indexers for best results",
         "type": "info"
       },
       {
-        "instruction": "Connect to Sonarr/Radarr (Settings > Apps > Add Application)",
+        "instruction": "Connect to Radarr: Settings \u2192 Apps \u2192 click + \u2192 select Radarr. Set: Prowlarr Server = http://prowlarr:9696, Radarr Server = http://radarr:7878, API Key = paste your RADARR API key from the previous step. Click Test \u2192 Save",
         "type": "info"
       },
       {
-        "instruction": "Go to Settings > General and copy the API Key",
+        "instruction": "Connect to Sonarr: Settings \u2192 Apps \u2192 click + \u2192 select Sonarr. Set: Prowlarr Server = http://prowlarr:9696, Sonarr Server = http://sonarr:8989, API Key = paste your SONARR API key. Click Test \u2192 Save",
+        "type": "info"
+      },
+      {
+        "instruction": "Go to Settings \u2192 General \u2192 find the API Key. Click copy",
         "type": "info"
       },
       {
         "instruction": "Paste the Prowlarr API key",
         "type": "input",
-        "env_key": "PROWLARR_API_KEY"
+        "env_key": "PROWLARR_API_KEY",
+        "api_validate_url": "/api/v1/system/status",
+        "api_header_format": "X-Api-Key: {key}"
       }
     ],
     "web_url_path": "/",

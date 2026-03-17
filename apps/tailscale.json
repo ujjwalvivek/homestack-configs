@@ -7,7 +7,10 @@
   "image": "tailscale/tailscale:latest",
   "ports": [],
   "network_mode": "host",
-  "cap_add": ["NET_ADMIN", "NET_RAW"],
+  "cap_add": [
+    "NET_ADMIN",
+    "NET_RAW"
+  ],
   "volumes": [
     {
       "host_path_key": "CONFIG_DIR",
@@ -62,19 +65,38 @@
     "icon": "tailscale.png",
     "external": true
   },
-  "tags": ["infrastructure", "vpn", "remote-access", "tailscale", "wireguard"],
+  "tags": [
+    "infrastructure",
+    "vpn",
+    "remote-access",
+    "tailscale",
+    "wireguard"
+  ],
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Generate an auth key at https://login.tailscale.com/admin/settings/keys",
+        "instruction": "Open https://login.tailscale.com/admin/settings/keys in your browser. Click 'Generate auth key'. Settings: Reusable \u2192 ON, Ephemeral \u2192 OFF, Tags \u2192 leave empty. Set expiry to 90 days (or 'No expiry'). Click 'Generate key' and copy the key (starts with tskey-auth-...)",
         "type": "get_key",
         "env_key": "TS_AUTHKEY",
         "url": "https://login.tailscale.com/admin/settings/keys"
       },
-      { "instruction": "Enable 'Reusable' and set an expiry (or no expiry) for the key", "type": "info" },
-      { "instruction": "To enable subnet routing, add '--advertise-routes=YOUR_LAN_CIDR' to TS_EXTRA_ARGS in your .env file", "type": "info" },
-      { "instruction": "To use as an exit node, add '--advertise-exit-node' to TS_EXTRA_ARGS and approve it in the Tailscale admin console", "type": "info" },
-      { "instruction": "Approve the new device and any advertised routes at https://login.tailscale.com/admin/machines", "type": "info" }
+      {
+        "instruction": "Paste the Tailscale auth key (starts with tskey-auth-...)",
+        "type": "input",
+        "env_key": "TS_AUTHKEY"
+      },
+      {
+        "instruction": "Your server will appear at https://login.tailscale.com/admin/machines within 30s. Install the Tailscale app on your phone/laptop and sign in with the same account to access your homelab remotely",
+        "type": "info"
+      },
+      {
+        "instruction": "Optional \u2014 Subnet routing: edit .env \u2192 add to TS_EXTRA_ARGS: --advertise-routes=192.168.1.0/24 (use your LAN subnet). Approve at Tailscale admin \u2192 Machines \u2192 your server \u2192 Edit route settings \u2192 enable the subnet",
+        "type": "info"
+      },
+      {
+        "instruction": "Optional \u2014 Exit node: add --advertise-exit-node to TS_EXTRA_ARGS in .env. Approve at Tailscale admin \u2192 Machines \u2192 your server \u2192 Edit route settings \u2192 toggle 'Use as exit node'",
+        "type": "info"
+      }
     ],
     "web_url_path": null,
     "docs_url": "https://tailscale.com/kb/"

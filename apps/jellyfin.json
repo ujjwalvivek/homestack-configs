@@ -57,21 +57,23 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Create your admin account on first login",
+        "instruction": "Create your admin account: choose a username and password. Select your preferred language and metadata language. Click Next",
         "type": "info"
       },
       {
-        "instruction": "Add media libraries: Movies \u2192 /media, TV Shows \u2192 /media",
+        "instruction": "Add media libraries: click 'Add Media Library' \u2192 Content Type: Movies \u2192 click + next to Folders \u2192 type /media/movies \u2192 click OK. Repeat for TV Shows \u2192 /media/tv. Click Next \u2192 Finish",
         "type": "info"
       },
       {
-        "instruction": "Go to Dashboard > API Keys and create a new key",
+        "instruction": "Create API key: go to Dashboard (admin panel, left sidebar) \u2192 API Keys \u2192 click + \u2192 name it 'homestack' \u2192 click OK. Copy the key shown",
         "type": "info"
       },
       {
         "instruction": "Paste the Jellyfin API key",
         "type": "input",
-        "env_key": "JELLYFIN_API_KEY"
+        "env_key": "JELLYFIN_API_KEY",
+        "api_validate_url": "/System/Info",
+        "api_header_format": "Authorization: MediaBrowser Token=\"{key}\""
       }
     ],
     "web_url_path": "/",

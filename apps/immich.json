@@ -155,25 +155,23 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Create your admin account on first login",
+        "instruction": "Create your admin account: enter your name, email, and a strong password. Click 'Sign Up'. This becomes the server administrator account",
         "type": "info"
       },
       {
-        "instruction": "Install the Immich mobile app and connect to http://YOUR_IP:2283",
+        "instruction": "Install the Immich mobile app (iOS/Android). Open it \u2192 Server URL: http://YOUR_SERVER_IP:2283 \u2192 sign in with your admin account. Go to Settings (gear icon) \u2192 enable 'Auto Backup' to automatically upload your photos",
         "type": "info"
       },
       {
-        "instruction": "Enable auto-backup in the mobile app settings",
-        "type": "info"
-      },
-      {
-        "instruction": "Go to Administration > API Keys and create a key",
+        "instruction": "Create API key: click your avatar (top right) \u2192 Account Settings \u2192 API Keys \u2192 click 'New API Key' \u2192 name it 'homestack' \u2192 click 'Create'. Copy the key shown (you won't see it again)",
         "type": "info"
       },
       {
         "instruction": "Paste the Immich API key",
         "type": "input",
-        "env_key": "IMMICH_API_KEY"
+        "env_key": "IMMICH_API_KEY",
+        "api_validate_url": "/api/server-info",
+        "api_header_format": "x-api-key: {key}"
       }
     ],
     "web_url_path": "/",
