@@ -75,7 +75,7 @@
     "widget": {
       "type": "pihole",
       "url": "http://pihole:80",
-      "key": "PIHOLE_API_KEY"
+      "key": "PIHOLE_WEBPASSWORD"
     }
   },
   "tags": [
@@ -86,7 +86,7 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Open Pi-hole web UI. Your admin password is: {ENV_VALUE} — paste it in the 'Password' field and click 'Log in'",
+        "instruction": "Open Pi-hole web UI. Your admin password is: {ENV_VALUE} \u2014 paste it in the 'Password' field and click 'Log in'",
         "type": "info",
         "env_display_key": "PIHOLE_WEBPASSWORD"
       },
@@ -95,7 +95,7 @@
         "type": "info"
       },
       {
-        "instruction": "Pi-hole v6 uses session-based authentication. No API token is needed — HomeStack validates using your admin password automatically",
+        "instruction": "Pi-hole v6 uses session-based authentication. No API token is needed \u2014 HomeStack validates using your admin password automatically",
         "type": "info"
       }
     ],
