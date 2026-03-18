@@ -75,7 +75,7 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Open https://login.tailscale.com/admin/settings/keys in your browser. Click 'Generate auth key'. Settings: Reusable \u2192 ON, Ephemeral \u2192 OFF, Tags \u2192 leave empty. Set expiry to 90 days (or 'No expiry'). Click 'Generate key' and copy the key (starts with tskey-auth-...)",
+        "instruction": "You need a Tailscale auth key to connect this server to your VPN. Open https://login.tailscale.com/admin/settings/keys → click 'Generate auth key'. Settings: Reusable → ON, Ephemeral → OFF, Tags → leave empty. Set expiry to 90 days (or 'No expiry'). Click 'Generate key' and copy the key (starts with tskey-auth-...)",
         "type": "get_key",
         "env_key": "TS_AUTHKEY",
         "url": "https://login.tailscale.com/admin/settings/keys"
@@ -83,18 +83,19 @@
       {
         "instruction": "Paste the Tailscale auth key (starts with tskey-auth-...)",
         "type": "input",
-        "env_key": "TS_AUTHKEY"
+        "env_key": "TS_AUTHKEY",
+        "restart_service": "tailscale"
       },
       {
-        "instruction": "Your server will appear at https://login.tailscale.com/admin/machines within 30s. Install the Tailscale app on your phone/laptop and sign in with the same account to access your homelab remotely",
+        "instruction": "After pasting, HomeStack will restart Tailscale and verify authentication. Once connected, install the Tailscale app on your phone/laptop and sign in with the same account to access your homelab remotely",
         "type": "info"
       },
       {
-        "instruction": "Optional \u2014 Subnet routing: edit .env \u2192 add to TS_EXTRA_ARGS: --advertise-routes=192.168.1.0/24 (use your LAN subnet). Approve at Tailscale admin \u2192 Machines \u2192 your server \u2192 Edit route settings \u2192 enable the subnet",
+        "instruction": "Optional — Subnet routing: edit .env → add to TS_EXTRA_ARGS: --advertise-routes=192.168.1.0/24 (use your LAN subnet). Approve at Tailscale admin → Machines → your server → Edit route settings → enable the subnet",
         "type": "info"
       },
       {
-        "instruction": "Optional \u2014 Exit node: add --advertise-exit-node to TS_EXTRA_ARGS in .env. Approve at Tailscale admin \u2192 Machines \u2192 your server \u2192 Edit route settings \u2192 toggle 'Use as exit node'",
+        "instruction": "Optional — Exit node: add --advertise-exit-node to TS_EXTRA_ARGS in .env. Approve at Tailscale admin → Machines → your server → Edit route settings → toggle 'Use as exit node'",
         "type": "info"
       }
     ],

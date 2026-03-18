@@ -46,10 +46,10 @@
     "standard_linuxserver": false,
     "extra_vars": [
       {
-        "key": "WEBPASSWORD",
+        "key": "FTLCONF_webserver_api_password",
         "env_key": "PIHOLE_WEBPASSWORD",
         "generate_secret": true,
-        "description": "Pi-hole admin panel password"
+        "description": "Pi-hole admin panel password (Pi-hole v6)"
       }
     ]
   },
@@ -86,8 +86,9 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Open Pi-hole web UI. Login password is the value of PIHOLE_WEBPASSWORD from your .env file. Enter it in the 'Password' field and click 'Log in'",
-        "type": "info"
+        "instruction": "Open Pi-hole web UI. Your admin password is: {ENV_VALUE} — paste it in the 'Password' field and click 'Log in'",
+        "type": "info",
+        "env_display_key": "PIHOLE_WEBPASSWORD"
       },
       {
         "instruction": "To block ads network-wide: log into your router's admin panel (usually 192.168.1.1). Find DNS settings (often under DHCP or Internet/WAN). Set the Primary DNS server to this server's IP address. Save and reboot your router. All devices on your network will now use Pi-hole",

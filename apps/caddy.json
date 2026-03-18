@@ -74,19 +74,27 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Caddy is your reverse proxy - it auto-configures from the generated Caddyfile. No manual setup needed unless you're using a custom domain",
+        "instruction": "⚠ IMPORTANT: For HTTPS to work, you MUST complete DNS setup FIRST. Go to your DNS provider (Cloudflare, Namecheap, etc.) → DNS Records → Add TWO records: (1) A record: Name = @, Value = your server's PUBLIC IP. (2) A record: Name = * (wildcard), Value = same PUBLIC IP, TTL = Auto. Find your public IP at https://ifconfig.me",
         "type": "info"
       },
       {
-        "instruction": "If you entered a domain during setup: go to your DNS provider (Cloudflare, Namecheap, etc.) → DNS Records → Add an A record: Name = * (wildcard), Value = your server's PUBLIC IP address, TTL = Auto. This makes *.yourdomain.com point to your server",
+        "instruction": "If using Cloudflare: make sure the proxy status (orange cloud) is set to 'DNS only' (grey cloud) for the wildcard record. Caddy handles TLS itself — Cloudflare proxy will break it",
         "type": "info"
       },
       {
-        "instruction": "Caddy will automatically request and renew free Let's Encrypt TLS certificates. First request takes ~30 seconds. After that, access any service at https://appname.yourdomain.com (e.g. https://radarr.yourdomain.com)",
+        "instruction": "Verify DNS is working: open a terminal and run 'nslookup homepage.yourdomain.com'. It should return your server's public IP. If it shows a different IP or fails, wait 5 minutes for DNS propagation and try again",
         "type": "info"
       },
       {
-        "instruction": "Without a domain: services are available at http://YOUR_SERVER_IP:PORT directly. No HTTPS needed for local access",
+        "instruction": "Your router/firewall must forward ports 80 and 443 to this server's local IP. Without port forwarding, Let's Encrypt cannot verify your domain and HTTPS will fail silently",
+        "type": "info"
+      },
+      {
+        "instruction": "Once DNS and port forwarding are configured, Caddy will automatically request and renew free Let's Encrypt TLS certificates. First certificate takes ~30 seconds. After that, access any service at https://appname.yourdomain.com",
+        "type": "info"
+      },
+      {
+        "instruction": "Without DNS/port forwarding: all services are still accessible at http://SERVER_IP:PORT directly. HTTPS is a bonus, not a requirement",
         "type": "info"
       }
     ],
