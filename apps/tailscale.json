@@ -45,7 +45,7 @@
         "key": "TS_EXTRA_ARGS",
         "env_key": "TS_EXTRA_ARGS",
         "generate_secret": false,
-        "description": "Additional Tailscale CLI arguments (e.g., --advertise-exit-node --advertise-routes=192.168.1.0/24)"
+        "description": "Additional Tailscale arguments (e.g., --advertise-exit-node --advertise-routes=192.168.1.0/24)"
       },
       {
         "key": "TS_ACCEPT_DNS",

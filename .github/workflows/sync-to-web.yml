@@ -6,6 +6,7 @@ on:
     paths:
       - 'apps/**'
       - 'index.json'
+      - 'README.md'
 
 jobs:
   dispatch:
