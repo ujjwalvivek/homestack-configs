@@ -70,7 +70,7 @@
         "type": "info"
       },
       {
-        "instruction": "Go to Settings \u2192 Download Clients \u2192 click the + button \u2192 select 'qBittorrent'. Set: Host = qbittorrent, Port = 8081, Username = admin, Password = adminadmin (or the password you set during qBittorrent setup). Click 'Test' (must show green checkmark) \u2192 click Save",
+        "instruction": "Go to Settings \u2192 Download Clients \u2192 click the + button \u2192 select 'qBittorrent'. Set: Host = qbittorrent, Port = 8081, Username = admin, Password = (the password you set during qBittorrent setup). Click 'Test' (must show green checkmark) \u2192 click Save",
         "type": "info"
       },
       {
@@ -81,7 +81,7 @@
         "instruction": "Paste the Radarr API key",
         "type": "input",
         "env_key": "RADARR_API_KEY",
-        "api_validate_url": "/api/v1/system/status",
+        "api_validate_url": "/api/v3/system/status",
         "api_header_format": "X-Api-Key: {key}"
       }
     ],
