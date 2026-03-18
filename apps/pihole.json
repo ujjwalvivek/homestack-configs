@@ -87,7 +87,8 @@
     "steps": [
       {
         "instruction": "Open Pi-hole web UI and use the admin password shown in the Pi-hole Login box below.",
-        "type": "info"
+        "type": "info",
+        "env_display_key": "PIHOLE_WEBPASSWORD"
       },
       {
         "instruction": "To block ads network-wide: log into your router's admin panel (usually 192.168.1.1). Find DNS settings (often under DHCP or LAN) and set the primary DNS to this server's IP address. All devices on your network will then use Pi-hole for DNS",

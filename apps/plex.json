@@ -81,7 +81,17 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Sign in with your Plex account (or create one at plex.tv). Claim the server first — PLEX_CLAIM tokens expire in about 4 minutes after generation. If Plex says 'Not Available', get a fresh token from https://www.plex.tv/claim/, update .env, restart plex, and reopen this page.",
+        "instruction": "Get a fresh claim token from https://www.plex.tv/claim/ while signed in. PLEX_CLAIM tokens expire in about 4 minutes, so paste it here before you open Plex in the browser.",
+        "type": "info"
+      },
+      {
+        "instruction": "Paste your Plex claim token",
+        "type": "input",
+        "env_key": "PLEX_CLAIM",
+        "restart_service": "plex"
+      },
+      {
+        "instruction": "After HomeStack restarts Plex, open /web, sign in with your Plex account, and finish the initial claim flow. If Plex still says 'Not Available', get a fresh token from https://www.plex.tv/claim/ and paste it again here.",
         "type": "info"
       },
       {
