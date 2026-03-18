@@ -58,11 +58,7 @@
         "type": "info"
       },
       {
-        "instruction": "Connect to Radarr: Settings \u2192 Apps \u2192 click + \u2192 select Radarr. Set: Prowlarr Server = http://prowlarr:9696, Radarr Server = http://radarr:7878, API Key = paste your RADARR API key (the key you copied when setting up Radarr earlier). Click Test (must show green checkmark) \u2192 Save",
-        "type": "info"
-      },
-      {
-        "instruction": "Connect to Sonarr: Settings \u2192 Apps \u2192 click + \u2192 select Sonarr. Set: Prowlarr Server = http://prowlarr:9696, Sonarr Server = http://sonarr:8989, API Key = paste your SONARR API key (the key you copied when setting up Sonarr earlier). Click Test (must show green checkmark) \u2192 Save",
+        "instruction": "HomeStack will auto-connect Radarr, Sonarr, and Whisparr after you paste a valid Prowlarr API key, using the API keys you already saved earlier in the wizard.",
         "type": "info"
       },
       {

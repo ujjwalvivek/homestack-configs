@@ -85,11 +85,7 @@
         "type": "info"
       },
       {
-        "instruction": "Go to Settings \u2192 Media Management \u2192 Root Folders \u2192 Add Root Folder \u2192 type /data/media \u2192 click OK",
-        "type": "info"
-      },
-      {
-        "instruction": "Go to Settings \u2192 Download Clients \u2192 click + \u2192 select 'qBittorrent'. Set: Host = qbittorrent, Port = 8081, Username = admin, Password = (the password you set during qBittorrent setup). Click Test (must show green checkmark) \u2192 Save",
+        "instruction": "HomeStack will add /data/media as the root folder and connect qBittorrent automatically right after you paste a valid API key. If you later want a different layout, you can change it in Settings \u2192 Media Management and Settings \u2192 Download Clients.",
         "type": "info"
       },
       {

@@ -76,7 +76,7 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Login with username = admin and the temporary password shown above (extracted from container logs). qBittorrent 4.6+ generates a random password on first start — the old admin/adminadmin default no longer works",
+        "instruction": "Login with username = admin and the temporary password shown in the wizard box below. qBittorrent 4.6+ generates a random password on first start — the old admin/adminadmin default no longer works",
         "type": "info"
       },
       {
@@ -88,7 +88,7 @@
         "type": "info"
       },
       {
-        "instruction": "Optional but recommended: Options → Web UI tab → scroll to 'Bypass authentication for clients on localhost'. Enable this so Radarr/Sonarr can connect without credentials",
+        "instruction": "Optional but recommended: Options → Web UI tab → scroll to 'Bypass authentication for clients on localhost'. Enable this so HomeStack can auto-connect Radarr, Sonarr, and Whisparr without storing your new qBittorrent password",
         "type": "info"
       }
     ],

@@ -66,11 +66,7 @@
         "type": "info"
       },
       {
-        "instruction": "Go to Settings (left sidebar) \u2192 Media Management \u2192 scroll down to 'Root Folders' \u2192 click 'Add Root Folder' \u2192 type /tv \u2192 click OK. This tells Sonarr where to store your TV show files",
-        "type": "info"
-      },
-      {
-        "instruction": "Go to Settings \u2192 Download Clients \u2192 click the + button \u2192 select 'qBittorrent'. Set: Host = qbittorrent, Port = 8081, Username = admin, Password = (the password you set during qBittorrent setup). Click 'Test' (must show green checkmark) \u2192 click Save",
+        "instruction": "HomeStack will add /tv as the root folder and connect qBittorrent automatically right after you paste a valid API key. If you later want a different layout, you can change it in Settings \u2192 Media Management and Settings \u2192 Download Clients.",
         "type": "info"
       },
       {

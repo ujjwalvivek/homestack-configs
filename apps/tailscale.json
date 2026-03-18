@@ -87,7 +87,7 @@
         "env_key": "TS_AUTHKEY"
       },
       {
-        "instruction": "After pasting, HomeStack will restart Tailscale and verify authentication. Once connected, install the Tailscale app on your phone/laptop and sign in with the same account to access your homelab remotely",
+        "instruction": "After pasting, HomeStack will restart Tailscale and verify authentication. If it does not connect within 60 seconds, the wizard will tell you whether to approve the machine or paste a fresh key. Once connected, install the Tailscale app on your phone/laptop and sign in with the same account to access your homelab remotely",
         "type": "info"
       },
       {

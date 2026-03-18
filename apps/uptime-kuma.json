@@ -53,7 +53,7 @@
         "type": "info"
       },
       {
-        "instruction": "Add monitors for each HomeStack service: click '+ New Monitor' \u2192 Type = HTTP(s). Use Docker hostnames for reliability. Examples: http://radarr:7878, http://sonarr:8989, http://plex:32400, http://immich:2283, http://pihole:80. Click Save for each",
+        "instruction": "After you save the API key, HomeStack can log in once with your admin username and password and add HTTP monitors for your deployed services automatically. The username/password prompt is transient and is not written to .env. Press esc at that prompt if you prefer to add monitors manually.",
         "type": "info"
       },
       {

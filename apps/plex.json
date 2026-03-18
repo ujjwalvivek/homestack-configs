@@ -81,7 +81,7 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Sign in with your Plex account (or create one at plex.tv). You MUST claim the server within 5 minutes of first start. If it says 'Not Available', check that PLEX_CLAIM is set in .env (get a claim token from https://www.plex.tv/claim/)",
+        "instruction": "Sign in with your Plex account (or create one at plex.tv). Claim the server first — PLEX_CLAIM tokens expire in about 4 minutes after generation. If Plex says 'Not Available', get a fresh token from https://www.plex.tv/claim/, update .env, restart plex, and reopen this page.",
         "type": "info"
       },
       {
