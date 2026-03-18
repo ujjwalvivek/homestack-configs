@@ -84,11 +84,11 @@
         "type": "info"
       },
       {
-        "instruction": "Still in Options → Downloads tab → set 'Default Save Path' to: /data/downloads. Click Save. This is where Radarr/Sonarr will look for completed downloads",
+        "instruction": "HomeStack tries to set 'Default Save Path' to /data/downloads automatically. Open Options → Downloads and verify it shows /data/downloads. If it still shows /downloads, change it manually and click Save",
         "type": "info"
       },
       {
-        "instruction": "Optional but recommended: Options → Web UI tab → scroll to 'Bypass authentication for clients on localhost'. Enable this so HomeStack can auto-connect Radarr, Sonarr, and Whisparr without storing your new qBittorrent password",
+        "instruction": "HomeStack also tries to allow the internal HomeStack Docker network to reach qBittorrent without storing your new password in the *arr apps. If you later tighten Web UI authentication settings, revisit the Download Clients section in Radarr/Sonarr/Whisparr",
         "type": "info"
       }
     ],

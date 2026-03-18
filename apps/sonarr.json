@@ -66,7 +66,7 @@
         "type": "info"
       },
       {
-        "instruction": "HomeStack will add /tv as the root folder and connect qBittorrent automatically right after you paste a valid API key. If you later want a different layout, you can change it in Settings \u2192 Media Management and Settings \u2192 Download Clients.",
+        "instruction": "HomeStack will add /tv/tv as the root folder, connect qBittorrent automatically, and add a remote path mapping from /data/downloads to /downloads right after you paste a valid API key. If you later want a different layout, you can change it in Settings \u2192 Media Management and Settings \u2192 Download Clients.",
         "type": "info"
       },
       {
