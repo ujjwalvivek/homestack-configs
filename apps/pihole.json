@@ -102,7 +102,7 @@
         "type": "input",
         "env_key": "PIHOLE_API_KEY",
         "api_validate_url": "/admin/api.php?summary",
-        "api_header_format": "X-Pi-Hole-Token: {key}"
+        "api_validate_mode": "query_param"
       }
     ],
     "web_url_path": "/admin",

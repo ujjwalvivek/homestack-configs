@@ -62,11 +62,11 @@
         "type": "info"
       },
       {
-        "instruction": "Connect Radarr: Settings \u2192 Radarr \u2192 click 'Add Radarr Server'. Set: Server Name = Radarr, Hostname = radarr, Port = 7878, API Key = paste your RADARR API key from earlier. Click 'Test' \u2192 select a Quality Profile and Root Folder \u2192 Save",
+        "instruction": "Connect Radarr: Settings \u2192 Radarr \u2192 click 'Add Radarr Server'. Set: Server Name = Radarr, Hostname = radarr, Port = 7878, API Key = paste the RADARR API key you copied when setting up Radarr earlier. Click 'Test' \u2192 select a Quality Profile and Root Folder (/movies) \u2192 Save",
         "type": "info"
       },
       {
-        "instruction": "Connect Sonarr: Settings \u2192 Sonarr \u2192 click 'Add Sonarr Server'. Set: Server Name = Sonarr, Hostname = sonarr, Port = 8989, API Key = paste your SONARR API key. Click 'Test' \u2192 select Quality Profile and Root Folder \u2192 Save",
+        "instruction": "Connect Sonarr: Settings \u2192 Sonarr \u2192 click 'Add Sonarr Server'. Set: Server Name = Sonarr, Hostname = sonarr, Port = 8989, API Key = paste the SONARR API key you copied when setting up Sonarr earlier. Click 'Test' \u2192 select Quality Profile and Root Folder (/tv) \u2192 Save",
         "type": "info"
       },
       {

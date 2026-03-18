@@ -20,6 +20,12 @@
       "host_subpath": "homepage",
       "container_path": "/app/config",
       "label": "Dashboard config"
+    },
+    {
+      "host_path_absolute": "/var/run/docker.sock",
+      "container_path": "/var/run/docker.sock",
+      "readonly": true,
+      "label": "Docker socket for container status"
     }
   ],
   "environment": {

@@ -89,7 +89,7 @@
         "type": "info"
       },
       {
-        "instruction": "Go to Settings \u2192 Download Clients \u2192 click + \u2192 select 'qBittorrent'. Set: Host = qbittorrent, Port = 8081. Click Test \u2192 Save",
+        "instruction": "Go to Settings \u2192 Download Clients \u2192 click + \u2192 select 'qBittorrent'. Set: Host = qbittorrent, Port = 8081, Username = admin, Password = adminadmin (or the password you set during qBittorrent setup). Click Test (must show green checkmark) \u2192 Save",
         "type": "info"
       },
       {

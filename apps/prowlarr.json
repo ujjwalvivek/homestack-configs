@@ -58,11 +58,11 @@
         "type": "info"
       },
       {
-        "instruction": "Connect to Radarr: Settings \u2192 Apps \u2192 click + \u2192 select Radarr. Set: Prowlarr Server = http://prowlarr:9696, Radarr Server = http://radarr:7878, API Key = paste your RADARR API key from the previous step. Click Test \u2192 Save",
+        "instruction": "Connect to Radarr: Settings \u2192 Apps \u2192 click + \u2192 select Radarr. Set: Prowlarr Server = http://prowlarr:9696, Radarr Server = http://radarr:7878, API Key = paste your RADARR API key (the key you copied when setting up Radarr earlier). Click Test (must show green checkmark) \u2192 Save",
         "type": "info"
       },
       {
-        "instruction": "Connect to Sonarr: Settings \u2192 Apps \u2192 click + \u2192 select Sonarr. Set: Prowlarr Server = http://prowlarr:9696, Sonarr Server = http://sonarr:8989, API Key = paste your SONARR API key. Click Test \u2192 Save",
+        "instruction": "Connect to Sonarr: Settings \u2192 Apps \u2192 click + \u2192 select Sonarr. Set: Prowlarr Server = http://prowlarr:9696, Sonarr Server = http://sonarr:8989, API Key = paste your SONARR API key (the key you copied when setting up Sonarr earlier). Click Test (must show green checkmark) \u2192 Save",
         "type": "info"
       },
       {
