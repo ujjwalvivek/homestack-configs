@@ -76,19 +76,19 @@
   "setup_wizard": {
     "steps": [
       {
-        "instruction": "Default login: username = admin, password = adminadmin. Enter these and click 'Login'. CHANGE THIS PASSWORD IMMEDIATELY in the next step",
+        "instruction": "Login with username = admin and the temporary password shown above (extracted from container logs). qBittorrent 4.6+ generates a random password on first start — the old admin/adminadmin default no longer works",
         "type": "info"
       },
       {
-        "instruction": "Go to Tools (top menu) \u2192 Options \u2192 Web UI tab. Under 'Authentication', change the Password field to a strong password. Click Save at the bottom",
+        "instruction": "Go to Tools (top menu) → Options → Web UI tab. Under 'Authentication', change the Password field to a strong password. Click Save at the bottom",
         "type": "info"
       },
       {
-        "instruction": "Still in Options \u2192 Downloads tab \u2192 set 'Default Save Path' to: /data/downloads. Click Save. This is where Radarr/Sonarr will look for completed downloads",
+        "instruction": "Still in Options → Downloads tab → set 'Default Save Path' to: /data/downloads. Click Save. This is where Radarr/Sonarr will look for completed downloads",
         "type": "info"
       },
       {
-        "instruction": "Optional but recommended: Options \u2192 Web UI tab \u2192 scroll to 'Bypass authentication for clients on localhost'. Enable this so Radarr/Sonarr can connect without credentials",
+        "instruction": "Optional but recommended: Options → Web UI tab → scroll to 'Bypass authentication for clients on localhost'. Enable this so Radarr/Sonarr can connect without credentials",
         "type": "info"
       }
     ],

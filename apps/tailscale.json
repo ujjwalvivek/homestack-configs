@@ -78,13 +78,13 @@
         "instruction": "You need a Tailscale auth key to connect this server to your VPN. Open https://login.tailscale.com/admin/settings/keys → click 'Generate auth key'. Settings: Reusable → ON, Ephemeral → OFF, Tags → leave empty. Set expiry to 90 days (or 'No expiry'). Click 'Generate key' and copy the key (starts with tskey-auth-...)",
         "type": "get_key",
         "env_key": "TS_AUTHKEY",
-        "url": "https://login.tailscale.com/admin/settings/keys"
+        "url": "https://login.tailscale.com/admin/settings/keys",
+        "restart_service": "tailscale"
       },
       {
         "instruction": "Paste the Tailscale auth key (starts with tskey-auth-...)",
         "type": "input",
-        "env_key": "TS_AUTHKEY",
-        "restart_service": "tailscale"
+        "env_key": "TS_AUTHKEY"
       },
       {
         "instruction": "After pasting, HomeStack will restart Tailscale and verify authentication. Once connected, install the Tailscale app on your phone/laptop and sign in with the same account to access your homelab remotely",

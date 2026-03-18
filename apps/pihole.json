@@ -91,19 +91,12 @@
         "env_display_key": "PIHOLE_WEBPASSWORD"
       },
       {
-        "instruction": "To block ads network-wide: log into your router's admin panel (usually 192.168.1.1). Find DNS settings (often under DHCP or Internet/WAN). Set the Primary DNS server to this server's IP address. Save and reboot your router. All devices on your network will now use Pi-hole",
+        "instruction": "To block ads network-wide: log into your router's admin panel (usually 192.168.1.1). Find DNS settings (often under DHCP or LAN) and set the primary DNS to this server's IP address. All devices on your network will then use Pi-hole for DNS",
         "type": "info"
       },
       {
-        "instruction": "In Pi-hole: go to Settings (gear icon, left sidebar) \u2192 API tab \u2192 click 'Show API token' \u2192 click the button to reveal and copy the token string",
+        "instruction": "Pi-hole v6 uses session-based authentication. No API token is needed — HomeStack validates using your admin password automatically",
         "type": "info"
-      },
-      {
-        "instruction": "Paste the Pi-hole API token",
-        "type": "input",
-        "env_key": "PIHOLE_API_KEY",
-        "api_validate_url": "/admin/api.php?summary",
-        "api_validate_mode": "query_param"
       }
     ],
     "web_url_path": "/admin",
